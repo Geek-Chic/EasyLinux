@@ -22,4 +22,7 @@ do
 done
 }
 load_function Lib 
-load_function Install
+
+main_command=("load_function#Install")
+main_desc=('install')
+display_menu_with_desc main 

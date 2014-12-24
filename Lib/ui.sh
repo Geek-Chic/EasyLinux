@@ -76,7 +76,7 @@ do
 	echo -e "                    ${soft} MENU                    "
         echo -e "User:${USER}    HOST:${THIS_HOST}    Date:${MYDATE} "
         echo -e "----------------------------------------------------"
-	for ((i=1;i<=${#desc[@]};i++ )); do echo -e "$i) ${desc[$i-1]}"; done
+	for ((i=1;i<=${#desc[@]};i++ )); do echo -e "$i) "`decode_str ${desc[$i-1]}`; done
         echo -e "----------------------------------------------------"
 	echo
 	read -p "${prompt}" $soft
@@ -85,9 +85,13 @@ do
 	if [ "$select" == "" ] || [ "${command[$soft-1]}" == ""  ];then
 		prompt="input errors,please input a number: "
 	else
-		cod=${command[$soft-1]}
+		cod=`decode_str ${command[$soft-1]}` 
                 eval $cod
 		break
 	fi
 done
+}
+#去掉字符串中的分隔符"#",替换为空格
+decode_str(){
+ echo $1 | tr '#' ' ' | tr -s ' '
 }
