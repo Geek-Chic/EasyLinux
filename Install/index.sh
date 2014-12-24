@@ -2,12 +2,11 @@
 # Description: Some install and config scripts
 # Author: Evil
 
-test(){
- echo "asdf"
+install_essential(){
+  yum -y install openssh-clients
+  yum -y install vim
 }
-test_command=(`test`)
-test_desc=('输入出test');
-display_menu_with_desc test
 
-
-
+install_command=("install_essential")
+install_desc=('install_essential_software');
+display_menu_with_desc install

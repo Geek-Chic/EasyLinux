@@ -85,8 +85,8 @@ do
 	if [ "$select" == "" ] || [ "${command[$soft-1]}" == ""  ];then
 		prompt="input errors,please input a number: "
 	else
-		eval $soft=${command[$soft-1]}
-		eval echo "your selection: \$$soft"             
+		cod=${command[$soft-1]}
+                eval $cod
 		break
 	fi
 done
