@@ -1,0 +1,14 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+decode_str	Lib/ui.sh	/^decode_str(){$/;"	f
+display_menu	Lib/ui.sh	/^display_menu(){$/;"	f
+display_menu_multi	Lib/ui.sh	/^display_menu_multi(){$/;"	f
+display_menu_with_desc	Lib/ui.sh	/^display_menu_with_desc(){$/;"	f
+install_essential	Module/install.sh	/^install_essential(){$/;"	f
+install_jdk	Module/install.sh	/^install_jdk(){$/;"	f
+install_zsh	Module/install.sh	/^install_zsh(){$/;"	f
+load_function	start.sh	/^load_function(){$/;"	f

@@ -67,9 +67,18 @@ eval echo -e "your selection \$${soft}_install"
 #显示菜单，自定义显示菜单条目
 display_menu_with_desc(){
 local soft=$1
+local main=$2
 local prompt="which ${soft} you'd select: "
 eval local command=(\${${soft}_command[@]})
 eval local desc=(\${${soft}_desc[@]})
+#添加回退选项
+if [ ! $main ]; then
+    command[${#command[@]}]="echo 'Back'"
+    desc[${#desc[@]}]="Back"
+fi
+#添加退出选项
+command[${#command[@]}]="exit 0"
+desc[${#desc[@]}]="Quit"
 while true
 do
         echo -e "----------------------------------------------------"
@@ -87,7 +96,10 @@ do
 	else
 		cod=`decode_str ${command[$soft-1]}` 
                 eval $cod
-		break
+     if [ ! $main ]; then
+        echo "Bye Bye"
+        break 2
+     fi
 	fi
 done
 }

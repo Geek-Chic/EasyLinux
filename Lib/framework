@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# File Name:framework.sh
+# Description: framework function
+# @Author: evil
+# Created Time:Fri 26 Dec 2014 08:48:05 PM CST
+
+get_root_dir(){
+  if [ !$ROOT_DIR ];then
+     ROOT_DIR=`pwd`
+  fi
+}
+get_current_sys(){
+    if which apt-get > /dev/null; then
+        SYSTEM="Ubuntu"
+        cat /proc/cpuinfo
+    elif which yum > /dev/null; then
+        SYSTEM="Centos"
+    fi
+}
+#是否调试
+debug(){
+    DEBUG=$1;
+}
+#调用函数
+load_function(){
+  local model=$1
+  local sys=$2
+if [  $sys ]; then
+   loadFile=${model}/*
+   else
+       loadFile=${model}/${SYSTEM}/*
+   fi
+for file in ${loadFile}
+do
+  local shfile=$ROOT_DIR/${file}
+  echo $shfile
+  if [ -s ${shfile} ] &&  [ ${file##*.} = 'sh' ]
+  then 
+      echo "exec file ${file}"
+      . ${shfile}
+  fi 
+  done
+}
+load_module_function(){
+    $loadFile=${ROOT_DIR}
+for file in ${loadFile}
+do
+  local shfile=$ROOT_DIR/${file}
+  if [ -s ${shfile} ] &&  [ ${file##*.} = 'sh' ]
+  then 
+      echo "aa"
+  fi 
+  done
+}
+#获取程序根目录
+get_root_dir
+#获取当前系统
+get_current_sys
+#默认关闭DEBUG
+debug false
