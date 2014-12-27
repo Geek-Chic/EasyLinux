@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bazz
 
-# File Name:framework.sh
+# File Name:framework.zz
 # Description: framework function
 # @Author: evil
 # Created Time:Fri 26 Dec 2014 08:48:05 PM CST
@@ -11,10 +11,10 @@ get_root_dir(){
   fi
 }
 get_current_sys(){
-    if which apt-get > /dev/null; then
+    if which apt-get > /dev/null 2>&1; then
         SYSTEM="Ubuntu"
         cat /proc/cpuinfo
-    elif which yum > /dev/null; then
+    elif which yum > /dev/null 2>&1; then
         SYSTEM="Centos"
     fi
 }
@@ -22,40 +22,40 @@ get_current_sys(){
 debug(){
     DEBUG=$1;
 }
+#调度日志
+log(){
+    msg=$1
+    if [ $DEBUG = true ]; then
+    echo "LOG_INFO***************************************"
+    echo "${msg}"
+    echo "LOG_INFR***************************************"
+fi
+}
+error(){
+    echo "$1"
+    exit 1
+}
 #调用函数
 load_function(){
-  local model=$1
-  local sys=$2
-if [  $sys ]; then
-   loadFile=${model}/*
-   else
-       loadFile=${model}/${SYSTEM}/*
-   fi
-for file in ${loadFile}
+for file in $*
 do
-  local shfile=$ROOT_DIR/${file}
-  echo $shfile
-  if [ -s ${shfile} ] &&  [ ${file##*.} = 'sh' ]
-  then 
-      echo "exec file ${file}"
-      . ${shfile}
+  if [[ -d ${file} ]]; then
+      load_function "${file}/*" 
+  elif [ -s ${file} ] &&  [ ${file##*.} = 'zz' ];then
+      log "import file ${file}"
+      . ${file}
   fi 
   done
 }
-load_module_function(){
-    $loadFile=${ROOT_DIR}
-for file in ${loadFile}
-do
-  local shfile=$ROOT_DIR/${file}
-  if [ -s ${shfile} ] &&  [ ${file##*.} = 'sh' ]
-  then 
-      echo "aa"
-  fi 
-  done
+#执行命令
+dexec(){
+    exef=$1
+    dexef=Module/${SYSTEM}/$1
+    . ${dexef}
 }
 #获取程序根目录
 get_root_dir
 #获取当前系统
 get_current_sys
 #默认关闭DEBUG
-debug false
+debug false 

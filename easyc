@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# File Name:test.sh
+# Description:
+# @Author: evil
+# Created Time:Fri 26 Dec 2014 08:44:11 PM CST
+
+help(){
+    echo -e "`cat <<EOF 
+    easyc -- easy for linux and mac
+    USAGE:easyc [-m] module [-t] target
+    OPTIONS:
+    -m module
+    -t target
+    -h help text
+    EXAMPLE:easyc -m install -t main
+    This will exec install/main.sh
+EOF`"
+    exit 0
+}
+#打印系统信息
+printinfo(){
+echo "root dir:${ROOT_DIR}"
+echo "system:${SYSTEM}"
+}
+
+ROOT_DIR=`pwd`
+#加载框架函数
+FRAMEWORK=$ROOT_DIR/Lib/framework
+if [ -f $FRAMEWORK ]; then
+    . $FRAMEWORK
+else
+    echo "Error: can not find framework.sh"
+    exit 0
+fi
+load_function Config 
+load_function Lib 
+load_function ${MODULE}
+if [ -n "$1" ];then
+    case $1 in
+        -h) help;;
+        -v) printinfo;;
+        -*) echo "Error:no such options $1.-h for help";exit 1;;
+         *) break;;
+    esac
+fi

@@ -6,6 +6,8 @@
 ROOT_DIR=`pwd`
 RES=${ROOT_DIR}/Res
 CONFIG=${ROOT_DIR}/Config
+SCRIPT=${ROOT_DIR}/Module/Script
+MODULE=${ROOT_DIR}/Module/${SYSTEM}
 
 
 ##163源

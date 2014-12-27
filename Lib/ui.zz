@@ -97,8 +97,8 @@ do
 		cod=`decode_str ${command[$soft-1]}` 
                 eval $cod
      if [ ! $main ]; then
-        echo "Bye Bye"
-        break 2
+        log  "Back to last level"
+        break
      fi
 	fi
 done

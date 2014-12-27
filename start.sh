@@ -13,9 +13,9 @@ else
     echo "Error: can not find framework.sh"
     exit 0
 fi
-load_function Config Gen
-load_function Lib Gen 
-
-main_command=("load_function#Module")
-main_desc=('install')
+load_function Config
+load_function Lib
+load_function ${MODULE}
+main_command=("dexec#Install/main.sh")
+main_desc=('Install')
 display_menu_with_desc main noback
