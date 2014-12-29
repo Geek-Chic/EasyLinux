@@ -16,6 +16,9 @@ fi
 load_function Config
 load_function Lib
 load_function ${MODULE}
-main_command=("dexec#Install/main.sh")
-main_desc=('Install')
+load_function ${SCRIPT}
+main_command=("dexec#Install/main.sh dexec#Android/main.sh")
+main_desc=('Install
+Android
+	')
 display_menu_with_desc main noback

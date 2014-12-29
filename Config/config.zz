@@ -8,11 +8,28 @@ RES=${ROOT_DIR}/Res
 CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
-
+GETOPT="/usr/local/Cellar/gnu-getopt/1.1.5/bin/getopt"
 
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
-
+show_usage()
+{
+        echo -e "`printf %-16s "Usage: $0"` [-h|--help]"
+        echo -e "`printf %-16s ` [-v|-V|--version]"
+        echo -e "`printf %-16s ` [-m|--module ... ]"
+        echo -e "`printf %-16s ` [-t|--target ... ]"
+        #echo -e "`printf %-16s ` [-t|--sshtimeout ... ]"
+        #echo -e "`printf %-16s ` [-T|--fttimeout ... ]"
+        #echo -e "`printf %-16s ` [-L|--bwlimit ... ]"
+       # echo -e "`printf %-16s ` [-n|--ignore]"
+        #echo "ignr_flag: 'ignr'-some ip will be ignored; otherwise-all ip will be handled"
+}
+##显示版本号
+show_version()
+{
+        echo "version: 0.1"
+        echo "updated date: 2014-12-29"
+}
 config_test(){
     echo "resource dir:${RES}"
     echo "config dir:${CONFIG}"

@@ -24,6 +24,7 @@ echo "root dir:${ROOT_DIR}"
 echo "system:${SYSTEM}"
 }
 
+#设置根目录
 ROOT_DIR=`pwd`
 #加载框架函数
 FRAMEWORK=$ROOT_DIR/Lib/framework
@@ -36,11 +37,50 @@ fi
 load_function Config 
 load_function Lib 
 load_function ${MODULE}
-if [ -n "$1" ];then
-    case $1 in
-        -h) help;;
-        -v) printinfo;;
-        -*) echo "Error:no such options $1.-h for help";exit 1;;
-         *) break;;
-    esac
+load_function ${SCRIPT}
+
+debug true
+
+# 入口参数分析
+TEMP=`${GETOPT} -o hvVm:t: --long help,version,module:,target: -- "$@" 2>/dev/null`
+[ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
+
+# 会将符合getopt参数规则的参数摆在前面，其他摆在后面，并在最后面添加--
+eval set -- "$TEMP"
+
+while :
+do
+        [ -z "$1" ] && break;
+        case "$1" in
+                -h|--help)
+                        show_usage; exit 0
+                        ;;
+                -v|-V|--version)
+                        show_version; exit 0
+                        ;;
+                -m|--module)
+                        EXE_MODULE=$2; shift 2
+                        ;;
+                -t|--target)
+                        EXE_TARGET=$2; shift 2
+                        ;;
+                -n|--ignore)
+                        IGNRFLAG="ignr"; shift
+                        ;;
+                --)
+                        shift
+                        ;;
+                *)
+                        echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
+                        ;;
+        esac
+done
+if [[ -n ${EXE_MODULE} ]] && [[ -n ${EXE_TARGET} ]]; then
+    if [[ -e ${MODULE}/${EXE_MODULE}/${EXE_TARGET} ]]; then
+     eval ${MODULE}/${EXE_MODULE}/${EXE_TARGET}.sh
+ else
+     eval ${SCRIPT}/${EXE_MODULE}/${EXE_TARGET}.sh
+    fi
+elif [[ -n ${EXE_TARGET} ]]; then
+     eval ${EXE_TARGET}
 fi

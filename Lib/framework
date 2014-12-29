@@ -16,6 +16,8 @@ get_current_sys(){
         cat /proc/cpuinfo
     elif which yum > /dev/null 2>&1; then
         SYSTEM="Centos"
+    else
+        SYSTEM="Macos"
     fi
 }
 #是否调试
@@ -26,9 +28,7 @@ debug(){
 log(){
     msg=$1
     if [ $DEBUG = true ]; then
-    echo "LOG_INFO***************************************"
     echo "${msg}"
-    echo "LOG_INFR***************************************"
 fi
 }
 error(){

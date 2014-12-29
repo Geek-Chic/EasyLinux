@@ -1,0 +1,15 @@
+#!/bin/bash
+# Description: Some install and config scripts
+# Author: Evil
+
+install_essential(){
+  #安装brew
+  #安装gnu-getopt
+  brew install gnu-getopt
+}
+install_zsh(){
+  . Install/zsh
+}
+install_jdk(){
+ echo "http://www.bbtang.info/linux/web/849.html" 
+}

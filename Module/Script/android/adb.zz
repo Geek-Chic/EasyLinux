@@ -1,0 +1,24 @@
+#!/bin/bash
+ADB=`which adb`
+http_tcpdump(){
+#adb shell "su -c 'sleep 1'"
+#adb start-server
+#adb push tcpdump /data/local/tcpdump
+#adb shell tcpdump -X -n -s 0 port 80
+exec_root_command 'tcpdump -p -vv -s 0 -w /sdcard/capture.pcap'
+}
+#挂载/system为读写
+dev_remount_rw(){
+	adb shell mount -o remount rw /system
+}
+#挂载/system为只读
+dev_remount_ro(){
+	adb shell mount -o remount ro /system
+}
+#以超级用户执行命令
+exec_root_command(){
+    local exec_command=$1
+#    log  "${ADB} shell su -c \'${exec_command}\'"
+    ${ADB} shell su -c \'${exec_command}\'
+
+}
