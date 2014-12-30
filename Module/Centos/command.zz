@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# File Name:command.zz
+# Description:Centos Common Command
+# @Author: evil
+# Created Time:Tue 30 Dec 2014 02:43:42 PM CST
+
+GETOPT=`which getopt`

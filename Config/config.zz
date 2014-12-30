@@ -8,7 +8,6 @@ RES=${ROOT_DIR}/Res
 CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
-GETOPT="/usr/local/Cellar/gnu-getopt/1.1.5/bin/getopt"
 
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"

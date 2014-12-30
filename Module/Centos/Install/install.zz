@@ -5,13 +5,26 @@
 install_essential(){
   #安装openssh
   echo "正在安装openssh-client"
-  yum -y install openssh-client
-  echo "正在安装vim"
-  yum -y install vim
+  sudo yum -y install openssh-client
 }
+#安装zsh
 install_zsh(){
-  . Install/zsh
+    . ${SCRIPT}/zsh 
 }
+#安装VIM
+install_vim(){
+  echo "正在安装vim"
+  sudo yum -y install vim
+  . ${SCRIPT}/vim
+}
+#安装jdk
 install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
+}
+#安装php,mysql,apache,nginx
+install_namp(){
+    echo "安装php,mysql,apache,nginx"
+    cd ${SCRIPT}/EZHTTP
+    sudo sh ${SCRIPT}/EZHTTP/start.sh
+    cd ${ROOT_DIR}
 }
