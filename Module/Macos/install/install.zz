@@ -5,6 +5,9 @@
 install_essential(){
   #安装brew
   #安装gnu-getopt
+  install_getopt
+}
+install_getopt(){
   brew install gnu-getopt
 }
 install_zsh(){

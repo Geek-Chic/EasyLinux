@@ -82,5 +82,6 @@ if [[ -n ${EXE_MODULE} ]] && [[ -n ${EXE_TARGET} ]]; then
      eval ${SCRIPT}/${EXE_MODULE}/${EXE_TARGET}.sh
     fi
 elif [[ -n ${EXE_TARGET} ]]; then
-     eval ${EXE_TARGET}
+    cod=`decode_str ${EXE_TARGET}` 
+    eval $cod 
 fi
