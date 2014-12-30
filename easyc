@@ -42,7 +42,7 @@ load_function ${SCRIPT}
 debug true
 
 # 入口参数分析
-TEMP=`${GETOPT} -o hvVm:t: --long help,version,module:,target: -- "$@" 2>/dev/null`
+TEMP=`${GETOPT} -o hvVum:t: --long help,version,module:,target:update -- "$@" 2>/dev/null`
 [ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
 
 # 会将符合getopt参数规则的参数摆在前面，其他摆在后面，并在最后面添加--
@@ -64,8 +64,8 @@ do
                 -t|--target)
                         EXE_TARGET=$2; shift 2
                         ;;
-                -n|--ignore)
-                        IGNRFLAG="ignr"; shift
+                -u|--update)
+                        update_submodule; exit 0
                         ;;
                 --)
                         shift

@@ -8,6 +8,7 @@ RES=${ROOT_DIR}/Res
 CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
+BIN=${ROOT_DIR}/Bin
 
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"

@@ -53,6 +53,7 @@ dexec(){
     dexef=Module/${SYSTEM}/$1
     . ${dexef}
 }
+
 #获取程序根目录
 get_root_dir
 #获取当前系统

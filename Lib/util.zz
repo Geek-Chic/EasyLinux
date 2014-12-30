@@ -12,3 +12,7 @@ check_system_info(){
         SYSTEM="centos"
     fi
 }
+#检查代码更新
+update_submodule(){
+    . ${BIN}/update-submodules.sh
+}
