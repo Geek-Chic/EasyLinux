@@ -3,7 +3,6 @@
 #Author: evil
 
 ###全局变量
-ROOT_DIR=`pwd`
 RES=${ROOT_DIR}/Res
 CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script

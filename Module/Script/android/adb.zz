@@ -1,5 +1,5 @@
 #!/bin/bash
-ADB=`which adb`
+ADB=`which adb 2>/dev/null`
 http_tcpdump(){
 #adb shell "su -c 'sleep 1'"
 #adb start-server

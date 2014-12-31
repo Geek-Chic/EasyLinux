@@ -24,14 +24,18 @@ echo "root dir:${ROOT_DIR}"
 echo "system:${SYSTEM}"
 }
 
-#设置根目录
-ROOT_DIR=`pwd`
+if [ -s $EASYC_HOME ];then
+    ROOT_DIR=$EASYC_HOME
+else
+    ROOT_DIR=`pwd`
+fi
 #加载框架函数
 FRAMEWORK=$ROOT_DIR/Lib/framework
 if [ -f $FRAMEWORK ]; then
     . $FRAMEWORK
 else
     echo "Error: can not find framework.sh"
+    echo 'please add $EASYC_HOME to your path'
     exit 0
 fi
 load_function Config 

@@ -6,8 +6,10 @@
 # Created Time:Fri 26 Dec 2014 08:48:05 PM CST
 
 get_root_dir(){
-  if [ !$ROOT_DIR ];then
-     ROOT_DIR=`pwd`
+  if [ -s $EASYC_HOME ];then
+     ROOT_DIR=${EASYC_HOME}
+     else
+    ROOT_DIR=`pwd`
   fi
 }
 get_current_sys(){
@@ -39,6 +41,7 @@ error(){
 load_function(){
 for file in $*
 do
+    file=`get_abs_path ${file}` 
   if [[ -d ${file} ]]; then
       load_function "${file}/*" 
   elif [ -s ${file} ] &&  [ ${file##*.} = 'zz' ];then
@@ -46,6 +49,14 @@ do
       . ${file}
   fi 
   done
+}
+get_abs_path(){
+  func_path=$1
+  if [ -s $func_path ]; then
+      echo ${func_path}
+      else
+      echo ${ROOT_DIR}/${func_path}
+    fi
 }
 #执行命令
 dexec(){
