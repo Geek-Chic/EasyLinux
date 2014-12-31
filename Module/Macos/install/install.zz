@@ -16,3 +16,8 @@ install_zsh(){
 install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
 }
+
+#安装homebrew
+install_brew(){
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}

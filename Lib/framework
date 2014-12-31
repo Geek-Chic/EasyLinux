@@ -5,6 +5,10 @@
 # @Author: evil
 # Created Time:Fri 26 Dec 2014 08:48:05 PM CST
 
+UBUNTU="Ubuntu"
+CENTOS="Centos"
+MACOS="Macos"
+
 get_root_dir(){
   if [ -s $EASYC_HOME ];then
      ROOT_DIR=${EASYC_HOME}
@@ -12,14 +16,15 @@ get_root_dir(){
     ROOT_DIR=`pwd`
   fi
 }
+#判断当前系统信息
 get_current_sys(){
     if which apt-get > /dev/null 2>&1; then
-        SYSTEM="Ubuntu"
+        SYSTEM="${UBUNTU}"
         cat /proc/cpuinfo
     elif which yum > /dev/null 2>&1; then
-        SYSTEM="Centos"
+        SYSTEM="${CENTOS}"
     else
-        SYSTEM="Macos"
+        SYSTEM="${MACOS}"
     fi
 }
 #是否调试

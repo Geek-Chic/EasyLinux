@@ -12,7 +12,49 @@ check_system_info(){
         SYSTEM="centos"
     fi
 }
+
 #检查代码更新
 update_submodule(){
     . ${BIN}/update-submodules.sh
+}
+
+#转大写
+uppercase(){
+	echo $1 | tr '[a-z]' '[A-Z]'
+}
+
+#转小写
+lowercase(){
+	echo $1 | tr '[A-Z]' '[a-z]'
+}
+#正则表达式匹配
+#-z 字符串为"null".就是长度为0.
+#-n 字符串不为"null"
+#   注意:
+#   使用-n在[]结构中测试必须要用""把变量引起来.使用一个未被""的字符串来使用! -z
+#   或者就是未用""引用的字符串本身,放到[]结构中。虽然一般情况下可
+pattern(){
+	res=`echo $1 | grep $2`
+	if [ -z ${res} ];then
+		return 0
+	else
+		return 1
+	fi
+}
+#根据类型打开相应的应用
+openui(){
+	uri=$1
+	echo ${SYSTEM}
+   if [ "${SYSTEM}" == "$UBUNTU" ];then
+   	 xdg-open $uri
+   elif [ "${SYSTEM}" == "$MACOS" ];then
+   	 open $uri
+   fi
+}
+#打印相关参数
+show(){
+  value=`uppercase $1`
+  #取值的值
+  value=`echo ${!value}`
+  openui $value
 }
