@@ -21,6 +21,9 @@ install_vim(){
 install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
 }
+install_tomcat(){
+  
+}
 #安装php,mysql,apache,nginx
 install_namp(){
     echo "安装php,mysql,apache,nginx"
