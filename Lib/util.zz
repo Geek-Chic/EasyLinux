@@ -44,7 +44,6 @@ pattern(){
 #根据类型打开相应的应用
 openui(){
 	uri=$1
-	echo ${SYSTEM}
    if [ "${SYSTEM}" == "$UBUNTU" ];then
    	 xdg-open $uri
    elif [ "${SYSTEM}" == "$MACOS" ];then
@@ -56,5 +55,6 @@ show(){
   value=`uppercase $1`
   #取值的值
   value=`echo ${!value}`
-  openui $value
+  echo ${value}
+  openui ${value}
 }

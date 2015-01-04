@@ -13,6 +13,7 @@ BIN=${ROOT_DIR}/Bin
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
 HOMEBREW="http://brew.sh"
+MAILGUN="https://mailgun.com"
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"

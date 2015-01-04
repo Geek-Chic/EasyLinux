@@ -28,3 +28,15 @@ install_namp(){
     sudo sh ${SCRIPT}/EZHTTP/start.sh
     cd ${ROOT_DIR}
 }
+#git 源码升级安装必备
+install_git(){
+  sudo yum -y install git
+  sudo yum -y install curl curl-devel zlib-devel perl perl-devel gettext-devel expat-devel openssl-devel
+  git clone https://github.com/git/git
+  cd git
+  autoconf
+  ./configure --prefix=/usr/local
+  make
+  sudo make install
+  git --version
+}

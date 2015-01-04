@@ -34,7 +34,7 @@ FRAMEWORK=$ROOT_DIR/Lib/framework
 if [ -f $FRAMEWORK ]; then
     . $FRAMEWORK
 else
-    echo "Error: can not find framework.sh"
+    echo "Error: can not find ${FRAMEWORK}"
     echo 'please add $EASYC_HOME to your path'
     exit 0
 fi
@@ -74,8 +74,9 @@ do
                 --)
                         shift
                         ;;
-                *)
-                        echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
+                *)      EXE_TARGET=$1
+                         
+                        exit 0
                         ;;
         esac
 done
@@ -89,3 +90,5 @@ elif [[ -n ${EXE_TARGET} ]]; then
     cod=`decode_str ${EXE_TARGET}` 
     eval $cod 
 fi
+
+# echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1

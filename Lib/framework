@@ -55,6 +55,7 @@ do
   fi 
   done
 }
+#获取绝对路径
 get_abs_path(){
   func_path=$1
   if [ -s $func_path ]; then
