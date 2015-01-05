@@ -5,17 +5,26 @@
 # @Author: evil
 # Created Time:Fri 26 Dec 2014 08:48:05 PM CST
 
+UBUNTU="Ubuntu"
+CENTOS="Centos"
+MACOS="Macos"
+
 get_root_dir(){
-  if [ !$ROOT_DIR ];then
-     ROOT_DIR=`pwd`
+  if [ -s $EASYC_HOME ];then
+     ROOT_DIR=${EASYC_HOME}
+     else
+    ROOT_DIR=`pwd`
   fi
 }
+#判断当前系统信息
 get_current_sys(){
     if which apt-get > /dev/null 2>&1; then
-        SYSTEM="Ubuntu"
+        SYSTEM="${UBUNTU}"
         cat /proc/cpuinfo
     elif which yum > /dev/null 2>&1; then
-        SYSTEM="Centos"
+        SYSTEM="${CENTOS}"
+    else
+        SYSTEM="${MACOS}"
     fi
 }
 #是否调试
@@ -26,9 +35,7 @@ debug(){
 log(){
     msg=$1
     if [ $DEBUG = true ]; then
-    echo "LOG_INFO***************************************"
     echo "${msg}"
-    echo "LOG_INFR***************************************"
 fi
 }
 error(){
@@ -39,6 +46,7 @@ error(){
 load_function(){
 for file in $*
 do
+    file=`get_abs_path ${file}` 
   if [[ -d ${file} ]]; then
       load_function "${file}/*" 
   elif [ -s ${file} ] &&  [ ${file##*.} = 'zz' ];then
@@ -47,12 +55,22 @@ do
   fi 
   done
 }
+#获取绝对路径
+get_abs_path(){
+  func_path=$1
+  if [ -s $func_path ]; then
+      echo ${func_path}
+      else
+      echo ${ROOT_DIR}/${func_path}
+    fi
+}
 #执行命令
 dexec(){
     exef=$1
     dexef=Module/${SYSTEM}/$1
     . ${dexef}
 }
+
 #获取程序根目录
 get_root_dir
 #获取当前系统

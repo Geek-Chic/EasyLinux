@@ -1,0 +1,3 @@
+[submodule "Module/Script/EZHTTP"]
+	path = Module/Script/EZHTTP
+	url = git@github.com:Geek-Chic/EZHTTP.git

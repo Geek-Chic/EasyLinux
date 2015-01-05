@@ -24,23 +24,76 @@ echo "root dir:${ROOT_DIR}"
 echo "system:${SYSTEM}"
 }
 
-ROOT_DIR=`pwd`
+if [ -s $EASYC_HOME ];then
+    ROOT_DIR=$EASYC_HOME
+else
+    ROOT_DIR=`pwd`
+fi
 #加载框架函数
 FRAMEWORK=$ROOT_DIR/Lib/framework
 if [ -f $FRAMEWORK ]; then
     . $FRAMEWORK
 else
-    echo "Error: can not find framework.sh"
+    echo "Error: can not find ${FRAMEWORK}"
+    echo 'please add $EASYC_HOME to your path'
     exit 0
 fi
 load_function Config 
 load_function Lib 
 load_function ${MODULE}
-if [ -n "$1" ];then
-    case $1 in
-        -h) help;;
-        -v) printinfo;;
-        -*) echo "Error:no such options $1.-h for help";exit 1;;
-         *) break;;
-    esac
+load_function ${SCRIPT}
+
+debug true
+
+# 入口参数分析
+TEMP=`${GETOPT} -o hvVum:t: --long help,version,module:,target:update -- "$@" 2>/dev/null`
+[ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
+
+# 会将符合getopt参数规则的参数摆在前面，其他摆在后面，并在最后面添加--
+eval set -- "$TEMP"
+
+while :
+do
+        [ -z "$1" ] && break;
+        case "$1" in
+                -h|--help)
+                        show_usage; exit 0
+                        ;;
+                -v|-V|--version)
+                        show_version; exit 0
+                        ;;
+                -m|--module)
+                        EXE_MODULE=$2; shift 2
+                        ;;
+                -t|--target)
+                        EXE_TARGET=$2; shift 2
+                        ;;
+                -u|--update)
+                        update_submodule; exit 0
+                        ;;
+                --)
+                        shift
+                        ;;
+                *)      EXE_TARGET=$1
+                        if [[ -n ${EXE_TARGET} ]];then
+                            eval "$*"
+                            command_state
+                        else
+                            show_usage
+                        fi
+                        exit 0
+                        ;;
+        esac
+done
+if [[ -n ${EXE_MODULE} ]] && [[ -n ${EXE_TARGET} ]]; then
+    if [[ -e ${MODULE}/${EXE_MODULE}/${EXE_TARGET} ]]; then
+     eval ${MODULE}/${EXE_MODULE}/${EXE_TARGET}.sh
+ else
+     eval ${SCRIPT}/${EXE_MODULE}/${EXE_TARGET}.sh
+    fi
+elif [[ -n ${EXE_TARGET} ]]; then
+    cod=`decode_str ${EXE_TARGET}` 
+    eval $cod 
 fi
+
+# echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1

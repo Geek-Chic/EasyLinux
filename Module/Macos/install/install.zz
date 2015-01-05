@@ -1,0 +1,23 @@
+#!/bin/bash
+# Description: Some install and config scripts
+# Author: Evil
+
+install_essential(){
+  #安装brew
+  #安装gnu-getopt
+  install_getopt
+}
+install_getopt(){
+  brew install gnu-getopt
+}
+install_zsh(){
+  . Install/zsh
+}
+install_jdk(){
+ echo "http://www.bbtang.info/linux/web/849.html" 
+}
+
+#安装homebrew
+install_brew(){
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}

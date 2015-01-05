@@ -1,0 +1,37 @@
+#!/bin/bash
+ADB=`which adb 2>/dev/null`
+http_tcpdump(){
+#adb shell "su -c 'sleep 1'"
+#adb start-server
+#adb push tcpdump /data/local/tcpdump
+#adb shell tcpdump -X -n -s 0 port 80
+exec_root_command 'tcpdump -p -vv -s 0 -w /sdcard/capture.pcap'
+}
+#挂载/system为读写
+dev_remount_rw(){
+	adb shell mount -o remount rw /system
+}
+#挂载/system为只读
+dev_remount_ro(){
+	adb shell mount -o remount ro /system
+}
+#以超级用户执行命令
+exec_root_command(){
+    local exec_command=$1
+#    log  "${ADB} shell su -c \'${exec_command}\'"
+    ${ADB} shell su -c \'${exec_command}\'
+
+}
+#对于adb无法实别某些机型，可以通过以下方法添加venderid
+#venderId可以在MAC关于本机->系统报告->USB中查看
+add_device(){
+	vendorid=%1
+	echo %1 >> ~/.android/adb_usb.ini
+	adb kill-server
+	adb start-server
+	adb devices
+}
+#更新AndroidSDK
+update_sdk(){
+  android update sdk --no-ui
+}
