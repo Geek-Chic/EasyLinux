@@ -1,0 +1,7 @@
+#!/bin/bash
+# Description: Some install and config scripts
+# Author: Evil
+install_essential(){
+	echo "正在安装证书工具certutil"
+	sudo apt-get install libnss3-tools
+}

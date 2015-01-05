@@ -8,6 +8,8 @@ install_essential(){
   yum -y install openssh-client
   echo "正在安装vim"
   yum -y install vim
+  echo "正在安装证书工具certutil"
+  su -c “yum install nss-tools”
 }
 install_zsh(){
   . Install/zsh
