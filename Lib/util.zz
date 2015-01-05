@@ -11,6 +11,7 @@ check_system_info(){
     elif which yum > /dev/null; then
         SYSTEM="centos"
     fi
+    echo "The current system is ${SYSTEM}"
 }
 
 #检查代码更新
@@ -57,4 +58,10 @@ show(){
   value=`echo ${!value}`
   echo ${value}
   openui ${value}
+}
+#命令执行状态
+command_state(){
+if [ $? -ne 0 ];then
+    echo "the command is not valid"
+fi
 }

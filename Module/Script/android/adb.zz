@@ -22,3 +22,16 @@ exec_root_command(){
     ${ADB} shell su -c \'${exec_command}\'
 
 }
+#对于adb无法实别某些机型，可以通过以下方法添加venderid
+#venderId可以在MAC关于本机->系统报告->USB中查看
+add_device(){
+	vendorid=%1
+	echo %1 >> ~/.android/adb_usb.ini
+	adb kill-server
+	adb start-server
+	adb devices
+}
+#更新AndroidSDK
+update_sdk(){
+  android update sdk --no-ui
+}

@@ -75,7 +75,12 @@ do
                         shift
                         ;;
                 *)      EXE_TARGET=$1
-                         
+                        if [[ -n ${EXE_TARGET} ]];then
+                            eval "$*"
+                            command_state
+                        else
+                            show_usage
+                        fi
                         exit 0
                         ;;
         esac
