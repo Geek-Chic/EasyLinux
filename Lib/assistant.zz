@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# File Name:assistant.zz
+# Description: assist functions
+# @Author: evil
+# Created Time:Tue 06 Jar 2015 19:56:09 PM CST
+#最新卫星云图
+yuntu() { 
+  yuntu_url=`curl -s --compressed http://www.weather.com.cn/static/product_video_v1.php\?class\=JC_YT_DL_WXZXCSYT | grep -E 'sevp_nsmc_wxcl_asc_e99_achn_lno_py_(.+)? w' | cut -c62-157`
+  openui $yuntu_url
+}

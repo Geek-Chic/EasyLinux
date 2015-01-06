@@ -11,3 +11,23 @@ config_git_complete(){
 	mkdir /opt/local/etc/bash_completion/
     cp git-completion.bash /opt/local/etc/bash_completion/
 }
+#设置环境变量
+setup_env(){
+	envpath=~/env
+    envbak=${MODULE}/config/env
+    if [[ -f ${envbak} ]];then
+			envbak=${envbak}
+	else
+			envbak=${RES}/zsh/env
+	fi
+
+	if [[ -f ${envpath} ]];then
+		echo "参照环境变量配置*****************"
+		echo "目录:~/env"
+		cat ${envbak}
+		echo "*********************"
+	else
+		cp ${envbak} ~/
+	fi
+	echo "setup_env success"
+}

@@ -4,6 +4,7 @@
 
 ###全局变量
 RES=${ROOT_DIR}/Res
+SOFT=${ROOT_DIR}/Soft
 CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
@@ -14,6 +15,8 @@ BIN=${ROOT_DIR}/Bin
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
 HOMEBREW="http://brew.sh"
 MAILGUN="https://mailgun.com"
+CHNROUTES="https://github.com/fivesheep/chnroutes"
+CHNROUTES_HELP="https://code.google.com/p/chnroutes/wiki/Usage"
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"

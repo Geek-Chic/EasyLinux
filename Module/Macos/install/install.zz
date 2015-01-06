@@ -21,3 +21,13 @@ install_jdk(){
 install_brew(){
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
+#安装设置chnroutes
+setup_chnroutes(){
+	install_chnroutes
+	cd ${SOFT}/chnroutes
+	python chnroutes.py -p mac
+	sudo chmod a+x ip-up ip-down
+	sudo cp ip-up /etc/ppp
+	sudo cp ip-down /etc/ppp
+	echo "chnroutes setup success"
+}

@@ -65,3 +65,19 @@ if [ $? -ne 0 ];then
     echo "the command is not valid"
 fi
 }
+#更新全局软链接
+update_ec(){
+  sudo rm /usr/local/bin/ec
+  #centos中不能使用软链接运行
+  sudo ln ${ROOT_DIR}/easyc /usr/local/bin/ec
+  sudo chmod +x /usr/local/bin/ec
+  echo "Update easyc success"
+  which ec
+}
+
+#快速查找当前目录下的文件
+f () { 
+  name=$1
+  shift
+  find . -name "*$name*" $@
+}

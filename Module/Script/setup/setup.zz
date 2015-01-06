@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# File Name:install.zz
+# Description: Common install function
+# @Author: evil
+# Created Time:Tue 01 Jar 2015 16:09:06 PM CST
+
+#初始化zshrc配置文件
+setup_zshrc(){
+	cd ${RES}/zsh
+	cat zshrc > ~/.zshrc
+	cat alia >> ~/.zshrc
+	setup_env
+	echo -e '\n#[Environment]\nsource env' >> ~/.zshrc
+	echo "setup .zshrc success"
+}

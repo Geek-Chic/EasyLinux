@@ -22,14 +22,16 @@ setup_gitalias(){
 
     git config --global core.editor vim
 }
-setup_chroute(){
-    chnroutes=${RES}
-    if [[ -d chnroutes ]];then
-        echo "chnroutes has download"
-    else
-        install_chnroutes
-    fi
+#设置chnroutes
+setup_chnroutes(){
+    install_chnroutes
+    cd ${SOFT}/chnroutes
     python chnroutes.py -p linux
+    sudo chmod +x ip-pre-up ip-down
+    sudo cp ip-pre-up /etc/ppp
+    sudo mkdir /etc/ppp/ip-down.d 
+    sudo cp ip-down /etc/ppp/ip-down.d 
+    sudo cp ip-down /etc/ppp
 }
 setup_git_complete(){
     git clone git@github.com:markgandolfo/git-bash-completion.git

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# File Name:system.zz
+# Description: System functions
+# @Author: evil
+# Created Time:Tue 06 Jar 2015 08:25:09 PM CST
+
+#快速关机
+shutdown () {
+  echo -n 你确定要关机吗？
+  read i
+  if [[ $i == [Yy] ]]; then
+    systemctl poweroff
+    # dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+  fi
+}
+#检查系统
+system_kernel(){
+  # 确定环境 {{{1
+ OS=`uname`
+if [[ $OS == "CYGWIN" ]]; then
+  OS=Linux
+elif [[ $OS == "Darwin" ]]; then
+  OS=FreeBSD
+fi
+  echo "The system kernel is $OS"
+}
+#kill all ssh that using default master socket
+killssh () { 
+  pids=$(netstat -nxlp 2>/dev/null | awk -v HOME=$HOME '{if(index($10, HOME"/.ssh/master-") == 1){print $9}}' | grep -o '^[[:digit:]]\+')
+  [[ -n $pids ]] && kill ${=pids}
+}
+#查看进程数最多的应用
+topnum(){
+	ps -e|sort -k4|awk '{print \$4}'|uniq -c|sort -n|tail
+}

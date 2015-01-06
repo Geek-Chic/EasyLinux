@@ -9,10 +9,11 @@
 #https://github.com/fivesheep/chnroutes
 #使用说明https://code.google.com/p/chnroutes/wiki/Usage
 install_chnroutes(){
-  chnroutesdir=${RES}/chnroutes
+  chnroutesdir=${SOFT}/chnroutes
   if [[ -d ${chnroutesdir} ]];then
   	echo "chnroutes has download in ${chnroutesdir}"
   else
+  	cd ${SOFT}
     git clone git@github.com:fivesheep/chnroutes.git
 fi
 }
