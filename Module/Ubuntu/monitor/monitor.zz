@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# File Name:monitor.sh
+# Description: systen monitor
+# @Author: evil
+# Created Time:Wed 31 Dec 2014 11:43:11 AM CST
+
+#监控wifi强度
+monitor_wifi_frequency(){
+    sudo iwlist wlan0 scan | grep \(Channel
+}
