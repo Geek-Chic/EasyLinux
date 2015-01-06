@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# File Name:config.zz
+# File Name:setup.zz
 # Description:
 # @Author: evil
 # Created Time:Tue 4 Jar 2015 19:54:50 PM CST
 
-
 config_git_complete(){
 	git clone git@github.com:markgandolfo/git-bash-completion.git
 	cd git-bash-completion
-	/etc/bash_completion.d/
-	#echo '. /etc/bash_completion.d/git-completion.bash' >> .zshrc
+	mkdir /opt/local/etc/bash_completion/
+    cp git-completion.bash /opt/local/etc/bash_completion/
 }

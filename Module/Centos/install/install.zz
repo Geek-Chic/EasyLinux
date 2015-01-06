@@ -10,6 +10,9 @@ install_essential(){
   yum -y install vim
   echo "正在安装证书工具certutil"
   su -c “yum install nss-tools”
+  sudo yum -y install openssh-client
+  install_utils
+
 }
 install_zsh(){
   . Install/zsh
@@ -17,3 +20,31 @@ install_zsh(){
 install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
 }
+install_tomcat(){
+  
+}
+#安装php,mysql,apache,nginx
+install_namp(){
+    echo "安装php,mysql,apache,nginx"
+    cd ${SCRIPT}/EZHTTP
+    sudo sh ${SCRIPT}/EZHTTP/start.sh
+    cd ${ROOT_DIR}
+}
+#git 源码升级安装必备
+install_git(){
+  sudo yum -y install git
+  sudo yum -y install curl curl-devel zlib-devel perl perl-devel gettext-devel expat-devel openssl-devel
+  git clone https://github.com/git/git
+  cd git
+  autoconf
+  ./configure --prefix=/usr/local
+  make
+  sudo make install
+  git --version
+}
+#系统没有traceroute,nslookup,host,dig命令，解决办法
+install_utils(){
+  sudo yum -y install bind-utils
+  sudo yum -y install traceroute
+}
+

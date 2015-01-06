@@ -22,3 +22,18 @@ setup_gitalias(){
 
     git config --global core.editor vim
 }
+setup_chroute(){
+    chnroutes=${RES}
+    if [[ -d chnroutes ]];then
+        echo "chnroutes has download"
+    else
+        install_chnroutes
+    fi
+    python chnroutes.py -p linux
+}
+setup_git_complete(){
+    git clone git@github.com:markgandolfo/git-bash-completion.git
+    cd git-bash-completion
+    /etc/bash_completion.d/
+    #echo '. /etc/bash_completion.d/git-completion.bash' >> .zshrc
+}

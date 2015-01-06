@@ -40,8 +40,8 @@ else
 fi
 load_function Config 
 load_function Lib 
-load_function ${MODULE}
 load_function ${SCRIPT}
+load_function ${MODULE}
 
 debug true
 
