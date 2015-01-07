@@ -15,18 +15,22 @@ BIN=${ROOT_DIR}/Bin
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
 HOMEBREW="http://brew.sh"
 MAILGUN="https://mailgun.com"
+#Chnroutes国内路由表
 CHNROUTES="https://github.com/fivesheep/chnroutes"
 CHNROUTES_HELP="https://code.google.com/p/chnroutes/wiki/Usage"
+#七牛
+QINIU="http://evilester.qiniudn.com"
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"
         echo -e "`printf %-16s ` [-v|-V|--version]"
         echo -e "`printf %-16s ` [-m|--module ... ]"
         echo -e "`printf %-16s ` [-t|--target ... ]"
+        echo -e "`printf %-16s ` [target param ...]"
         #echo -e "`printf %-16s ` [-t|--sshtimeout ... ]"
         #echo -e "`printf %-16s ` [-T|--fttimeout ... ]"
         #echo -e "`printf %-16s ` [-L|--bwlimit ... ]"
-       # echo -e "`printf %-16s ` [-n|--ignore]"
+        #echo -e "`printf %-16s ` [-n|--ignore]"
         #echo "ignr_flag: 'ignr'-some ip will be ignored; otherwise-all ip will be handled"
 }
 ##显示版本号

@@ -57,7 +57,9 @@ show(){
   #取值的值
   value=`echo ${!value}`
   echo ${value}
+  if [[ -n $2 ]];then
   openui ${value}
+  fi
 }
 #命令执行状态
 command_state(){
@@ -80,4 +82,12 @@ f () {
   name=$1
   shift
   find . -name "*$name*" $@
+}
+#默认参数
+dparam(){
+   relparam=$1
+   if [[ -z $relparam ]];then
+     relparam=$2
+   fi
+   echo $relparam
 }

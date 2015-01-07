@@ -14,3 +14,19 @@ setup_zshrc(){
 	echo -e '\n#[Environment]\nsource env' >> ~/.zshrc
 	echo "setup .zshrc success"
 }
+#同步上传qiniu
+#使用-n -z 判断非空与空一定要用""双引号括起来如下所示
+#if [ -n "${param}" ];then ...
+upload_qiniu_blog(){
+	qiniu="/Users/evil/快盘/nodejs/qiniu"
+	qiniupic="/Users/evil/快盘/nodejs/syncpic"	
+	blog=$1
+	${qiniu}/qrsync ${qiniu}/config.json
+	if [ -n "${blog}" ] && [ -d ${qiniupic}/${blog} ];then
+      eval "ls ${qiniupic}/${blog} | awk '{ printf(\"${QINIU}/${blog}/%s\n\",\$1) }'"
+  else
+  	 echo "${qiniupic}/${blog} 不存在"
+  	 echo "------可用model-------"
+  	 ls ${qiniupic}
+   fi
+}
