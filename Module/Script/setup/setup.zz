@@ -30,3 +30,14 @@ upload_qiniu_blog(){
   	 ls ${qiniupic}
    fi
 }
+open_qiniu_pic(){
+  blog=$1
+  qiniupic="/Users/evil/快盘/nodejs/syncpic"	
+  if [ -n "${blog}" ] && [ -d ${qiniupic}/${blog} ];then
+    openui ${qiniupic}/${blog}
+     else
+  	 echo "${qiniupic}/${blog} 不存在"
+  	 echo "------可用model-------"
+  	 ls ${qiniupic}
+   fi
+}

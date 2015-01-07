@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# File Name:abbr.zz
+# Description: abbrviate function
+# @Author: evil
+# Created Time:Wed 07 Jar 2015 15:39:06 PM CST
+
+#sync image with qiniu
+uqn(){
+	upload_qiniu_blog $@
+}
+#open qiniu pic folder
+oqn(){
+	open_qiniu_pic $@
+}
+#更新ec
+uec(){
+	update_ec $@
+}
