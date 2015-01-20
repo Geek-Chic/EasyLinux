@@ -10,7 +10,6 @@ SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
 BIN=${ROOT_DIR}/Bin
 
-
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
 HOMEBREW="http://brew.sh"
@@ -43,3 +42,13 @@ config_test(){
     echo "resource dir:${RES}"
     echo "config dir:${CONFIG}"
 }
+#创建文件夹
+md(){
+    dir_path=$1
+    if [ ! -d ${dir_path} ];then
+        mkdir -p $1
+        echo "make dir ${dir_path}"
+    fi
+}
+##创建SOFT文件夹
+md ${SOFT}

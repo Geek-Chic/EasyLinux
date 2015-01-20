@@ -21,7 +21,7 @@ install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
 }
 install_tomcat(){
-  
+  echo "install_tomcat" 
 }
 #安装php,mysql,apache,nginx
 install_namp(){
@@ -47,4 +47,12 @@ install_utils(){
   sudo yum -y install bind-utils
   sudo yum -y install traceroute
 }
-
+#安装n2n
+install_n2n(){
+    sudo yum install subversion gcc-c++ openssl-devel
+    cd ${SOFT}
+    svn co https://svn.ntop.org/svn/ntop/trunk/n2n
+    cd n2n/n2n_v2
+    make
+    sudo make install
+}
