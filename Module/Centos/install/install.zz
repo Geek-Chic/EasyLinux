@@ -62,3 +62,11 @@ install_32(){
   sudo yum install glibc.i686  libz.so.1 libstdc++.so.6
 }
 
+install_iproute2(){
+  sudo yum install bison flex db4-devel
+  cd ${SOFT}
+  wget http://devresources.linux-foundation.org/dev/iproute2/download/iproute2-2.6.26.tar.bz2
+  tar xjf iproute2-2.6.26.tar.bz2
+  cd iproute2-2.6.26 
+  make 
+}

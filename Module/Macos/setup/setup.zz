@@ -31,3 +31,8 @@ setup_env(){
 	fi
 	echo "setup_env success"
 }
+
+setup_sublime(){
+	sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/bin/subl
+	subl -v
+}
