@@ -39,3 +39,10 @@ setup_git_complete(){
     /etc/bash_completion.d/
     #echo '. /etc/bash_completion.d/git-completion.bash' >> .zshrc
 }
+#设置vpn帐户
+setup_vpn(){
+    ip_value=$1
+    username_value=$2
+    passwd_value=$3
+    sudo pptpsetup --create test --server ${ip_value} --username ${username_value} --password ${passwd_value} --start
+}

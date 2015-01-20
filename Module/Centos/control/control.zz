@@ -4,3 +4,13 @@
 # Description: control function
 # @Author: evil
 # Created Time:Tue 01 Jar 2015 16:09:06 PM CST
+# 启动vpn
+pon(){
+	sudo pon vpn_shenma_usabak
+	sudo route add -net 0.0.0.0 dev ppp0
+}
+#关闭vpn
+poff(){
+	 sudo /etc/init.d/network restart
+     sudo poff vpn_shenma_usabak
+}

@@ -70,3 +70,9 @@ install_iproute2(){
   cd iproute2-2.6.26 
   make 
 }
+
+#安装pptpVPN客户端
+install_pptp(){
+  sudo yum install ppp pptp pptp-setup
+}
+
