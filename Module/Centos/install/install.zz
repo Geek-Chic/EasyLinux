@@ -12,6 +12,7 @@ install_essential(){
   su -c “yum install nss-tools”
   sudo yum -y install openssh-client
   install_utils
+  install_32
 
 }
 install_zsh(){
@@ -56,3 +57,8 @@ install_n2n(){
     make
     sudo make install
 }
+#64位机安装32位兼容包
+install_32(){
+  sudo yum install glibc.i686  libz.so.1 libstdc++.so.6
+}
+

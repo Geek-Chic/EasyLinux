@@ -5,3 +5,22 @@ install_essential(){
 	echo "正在安装证书工具certutil"
 	sudo apt-get install libnss3-tools
 }
+#安装n2n
+install_n2n(){
+   # sudo yum install subversion gcc-c++ openssl-devel
+    cd ${SOFT}
+    svn co https://svn.ntop.org/svn/ntop/trunk/n2n
+    cd n2n/n2n_v2
+    make
+    sudo make install
+}
+#install gcc-4.8
+update_gcc(){
+	sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    sudo apt-get update
+    sudo apt-get install gcc-4.8
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
+    sudo apt-get install g++-4.8
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+}

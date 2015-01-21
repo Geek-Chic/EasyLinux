@@ -20,7 +20,7 @@ get_root_dir(){
 get_current_sys(){
     if which apt-get > /dev/null 2>&1; then
         SYSTEM="${UBUNTU}"
-        cat /proc/cpuinfo
+  #      cat /proc/cpuinfo
     elif which yum > /dev/null 2>&1; then
         SYSTEM="${CENTOS}"
     else
