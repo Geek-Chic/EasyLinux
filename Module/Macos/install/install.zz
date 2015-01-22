@@ -31,3 +31,13 @@ setup_chnroutes(){
 	sudo cp ip-down /etc/ppp
 	echo "chnroutes setup success"
 }
+#安装n2n
+install_n2n(){
+    cd ${SOFT}
+    svn co https://svn.ntop.org/svn/ntop/trunk/n2n
+    curl https://gist.githubusercontent.com/Geek-Chic/e1bcbedb20aad1ce123e/raw/b5c10fa975360f88e35e4ab37f3e327431c64c3f/n2n_v2_osx_fix.diff > ${TMP}/n2n_v2_osx_fix.diff
+    cd n2n/n2n_v2
+    patch < ${TMP}/n2n_v2_osx_fix.diff
+    make
+    sudo make install
+}

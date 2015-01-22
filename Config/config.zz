@@ -9,6 +9,7 @@ CONFIG=${ROOT_DIR}/Config
 SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
 BIN=${ROOT_DIR}/Bin
+TMP=${ROOT_DIR}/Tmp
 
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"
@@ -19,6 +20,8 @@ CHNROUTES="https://github.com/fivesheep/chnroutes"
 CHNROUTES_HELP="https://code.google.com/p/chnroutes/wiki/Usage"
 #七牛
 QINIU="http://evilester.qiniudn.com"
+#n2n
+N2N=https://github.com/hpfem/hermes/wiki/Vpn
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"
@@ -52,3 +55,4 @@ md(){
 }
 ##创建SOFT文件夹
 md ${SOFT}
+md ${TMP}
