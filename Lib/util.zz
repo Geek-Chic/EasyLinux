@@ -81,7 +81,7 @@ update_ec(){
 f () { 
   name=$1
   shift
-  find . -name "*$name*" $@
+  sudo find . -name "*$name*" $@
 }
 #默认参数
 dparam(){
