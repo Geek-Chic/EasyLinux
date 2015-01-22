@@ -13,10 +13,14 @@ install_essential(){
   sudo yum -y install openssh-client
   install_utils
   install_32
+  install_screen
 
 }
+#安装zsh
 install_zsh(){
-  . Install/zsh
+  sudo yum -y install zsh
+  install_zsh_setting
+  setup_zshrc
 }
 install_jdk(){
  echo "http://www.bbtang.info/linux/web/849.html" 
@@ -73,6 +77,10 @@ install_iproute2(){
 
 #安装pptpVPN客户端
 install_pptp(){
-  sudo yum install ppp pptp pptp-setup
+  sudo yum -y install ppp pptp pptp-setup
+}
+#安装screen
+install_screen(){
+  sudo yum -y install screen
 }
 
