@@ -41,3 +41,7 @@ open_qiniu_pic(){
   	 ls ${qiniupic}
    fi
 }
+#新起一个ssh agent
+setup_sshagent(){
+  eval `ssh-agent`
+}

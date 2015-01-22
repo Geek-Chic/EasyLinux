@@ -19,6 +19,7 @@ install_essential(){
 #安装zsh
 install_zsh(){
   sudo yum -y install zsh
+  sudo chsh -s /bin/zsh
   install_zsh_setting
   setup_zshrc
 }

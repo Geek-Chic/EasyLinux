@@ -21,7 +21,9 @@ CHNROUTES_HELP="https://code.google.com/p/chnroutes/wiki/Usage"
 #七牛
 QINIU="http://evilester.qiniudn.com"
 #n2n
-N2N=https://github.com/hpfem/hermes/wiki/Vpn
+N2N="https://github.com/hpfem/hermes/wiki/Vpn"
+#VIM配置
+VIMIDE="https://raw.github.com/ma6174/vim/master/setup.sh"
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"

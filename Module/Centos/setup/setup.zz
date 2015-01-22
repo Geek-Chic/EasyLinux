@@ -22,6 +22,10 @@ setup_gitalias(){
 
     git config --global core.editor vim
 }
+setup_git(){
+    git conifg --global user.email "geekchic@sina.cn"
+    git config --global user.name "Evil"
+}
 #设置chnroutes
 setup_chnroutes(){
     install_chnroutes

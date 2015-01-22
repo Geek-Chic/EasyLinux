@@ -20,5 +20,11 @@ fi
 #安装zsh配置
 install_zsh_setting(){
    rm -rf ~/.oh-my-zsh
+   chmod +x ../zsh
    .  ../zsh
+}
+#安装vim IDE
+install_vimide(){
+	cd ${TMP}
+	wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh
 }
