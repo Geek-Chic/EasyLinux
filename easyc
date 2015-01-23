@@ -24,14 +24,14 @@ echo "root dir:${ROOT_DIR}"
 echo "system:${SYSTEM}"
 }
 
-if [ -s $EASYC_HOME ];then
+if [ -d ${EASYC_HOME} ];then
     ROOT_DIR=$EASYC_HOME
 else
     ROOT_DIR=`pwd`
 fi
 #加载框架函数
 FRAMEWORK=$ROOT_DIR/Lib/framework
-if [ -f $FRAMEWORK ]; then
+if [ -f ${FRAMEWORK} ]; then
     . $FRAMEWORK
 else
     echo "Error: can not find ${FRAMEWORK}"
@@ -76,7 +76,13 @@ do
                         ;;
                 *)      EXE_TARGET=$1
                         if [[ -n ${EXE_TARGET} ]];then
-                            eval "$*"
+                           # eval "$*"
+                          #组装参数，支持带空格参数
+                           for i in "$@"
+                           do 
+                               cod="${cod}\""$i"\" "
+                           done
+                            eval $cod
                             command_state
                         else
                             show_usage

@@ -91,3 +91,16 @@ dparam(){
    fi
    echo $relparam
 }
+#参数判空
+pnn(){
+    num=$1
+    tips=$2
+    shift 2
+   for((i=1;i<=${num};i++))
+    do
+        if [ -z $1 ];then
+         error "param invalide!\nUsage:${tips}"
+        fi
+        shift
+    done
+}

@@ -39,7 +39,7 @@ log(){
 fi
 }
 error(){
-    echo "$1"
+    echo -e "$1"
     exit 1
 }
 #调用函数
