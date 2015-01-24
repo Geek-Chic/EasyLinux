@@ -46,7 +46,7 @@ load_function ${MODULE}
 debug true
 
 # 入口参数分析
-TEMP=`${GETOPT} -o hvVum:t: --long help,version,module:,target:update -- "$@" 2>/dev/null`
+TEMP=`${GETOPT} -o hvVudm:t: --long help,version,daemon,module:,target:update -- "$@" 2>/dev/null`
 [ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
 
 # 会将符合getopt参数规则的参数摆在前面，其他摆在后面，并在最后面添加--
@@ -69,7 +69,10 @@ do
                         EXE_TARGET=$2; shift 2
                         ;;
                 -u|--update)
-                        update_submodule; exit 0
+                        uec; exit 0
+                        ;;
+                -d|--daemon)
+                        DAEMON_MARK=1;shift
                         ;;
                 --)
                         shift
@@ -82,7 +85,15 @@ do
                            do 
                                cod="${cod}\""$i"\" "
                            done
+                           if [[ -n ${DAEMON_MARK} ]];then
+                            # quit existing if there is one running already, be careful
+                               screen -D -RR ${EXE_TARGET} -X quit || true
+                               screen -dmS ${EXE_TARGET}
+                               echo "ec ${cod}" > .ec
+                               screen -r ${EXE_TARGET} -p 0 -X stuff $'`cat .ec`\n'
+                           else
                             eval $cod
+                        fi
                             command_state
                         else
                             show_usage

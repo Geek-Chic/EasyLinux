@@ -104,3 +104,8 @@ pnn(){
         shift
     done
 }
+
+#停止所有detach的Screen连接
+kill_detach_screen(){
+  screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
+}

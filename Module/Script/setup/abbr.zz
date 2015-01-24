@@ -17,3 +17,7 @@ oqn(){
 uec(){
 	update_ec $@
 }
+#停止所有detach的Screen连接
+kds(){
+	kill_detach_screen
+}
