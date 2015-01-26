@@ -23,6 +23,14 @@ install_zsh_setting(){
    chmod +x ../zsh
    .  ../zsh
 }
+#安装zsh自动完成
+install_zsh_completions(){
+ cd ${SOFT}
+ git clone git://github.com/zsh-users/zsh-completions.git
+ mkdir -p ~/.oh-my-zsh/completions
+ cp zsh-completions/src/* ~/.oh-my-zsh/completions/
+ rm -f ~/.zcompdump; compinit
+}
 #安装vim IDE
 install_vimide(){
 	cd ${TMP}

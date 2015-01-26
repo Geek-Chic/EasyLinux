@@ -92,4 +92,16 @@ install_vimide(){
 install_wget(){
   sudo yum -y install wget
 }
-
+install_exvim(){
+    cd ${SOFT}
+    git clone https://github.com/exvim/main
+    cd main
+    sh unix/install.sh
+}
+#安装自己的vim
+install_myvim(){
+    cd ${SOFT}
+    git clone https://github.com/Geek-Chic/main.git myvim
+    cd myvim
+    sh unix/install.sh
+}

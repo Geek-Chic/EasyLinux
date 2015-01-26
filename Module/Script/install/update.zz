@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# File Name:update.zz
+# Description: update function
+# @Author: evil
+# Created Time:Mon 26 Jar 2015 21:05:06 PM CST
+
+#zsh自动完成
+update_zsh_completions(){
+     cd ${SOFT}
+ if [[ -d zsh-completions ]];then
+     cd zsh-completions
+     git pull --rebase
+   else
+     git clone git://github.com/zsh-users/zsh-completions.git
+   fi
+     cd ${SOFT}
+     mkdir -p ~/.oh-my-zsh/completions
+     cp zsh-completions/src/* ~/.oh-my-zsh/completions/
+     rm -f ~/.zcompdump
+     echo "请运行compinit更新环境"
+}
