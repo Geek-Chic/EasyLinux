@@ -17,8 +17,8 @@ poff(){
 #设置n2n边缘结点
 start_edge(){
   stop_edge
-  sudo edge -a 10.10.0.2 -c mynetwork -k mynetwork -l 119.57.58.71:5000
-  echo "已设置edge:ip 10.10.0.2"
+  sudo edge -a 10.10.0.5 -c mynetwork -k mynetwork -l 119.57.58.71:5000
+  echo "已设置edge:ip 10.10.0.5"
 }
 #停止边缘结点 
 stop_edge(){

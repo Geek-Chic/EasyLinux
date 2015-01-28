@@ -48,5 +48,9 @@ setup_vpn(){
     ip_value=$1
     username_value=$2
     passwd_value=$3
-    sudo pptpsetup --create test --server ${ip_value} --username ${username_value} --password ${passwd_value} --start
+    pnn 3 "setup_vpn ip username password" ${ip_value} ${username_value} ${passwd_value}
+    sudo pptpsetup --create shenma --server ${ip_value} --username ${username_value} --password ${passwd_value} --start
+    sudo cp /usr/share/doc/ppp-2.4.5/scripts/pon /usr/sbin/
+    sudo cp /usr/share/doc/ppp-2.4.5/scripts/poff /usr/sbin/
+    sudo chmod +x /usr/sbin/pon /usr/sbin/poff
 }
