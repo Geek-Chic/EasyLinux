@@ -105,3 +105,27 @@ install_myvim(){
     cd myvim
     sh unix/install.sh
 }
+#安装pip
+install_pip(){
+   cd ${TMP}
+   wget https://bootstrap.pypa.io/get-pip.py
+   sudo python get-pip.py
+}
+install_shadowsocks(){
+    if which pip 2>/dev/null;then
+      sudo pip install shadowsocks
+  else
+      install_pip
+      sudo pip install shadowsocks
+  fi
+}
+#安装autoshadower
+install_autoshadower(){
+  cd ${SOFT}
+  git clone git@github.com:yangyangwithgnu/autoshadower.git
+  cd autoshadower/build/
+  cmake .
+  sudo make
+  sudo make install
+  autoshadower
+}
