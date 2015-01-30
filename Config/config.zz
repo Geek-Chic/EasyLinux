@@ -10,6 +10,7 @@ SCRIPT=${ROOT_DIR}/Module/Script
 MODULE=${ROOT_DIR}/Module/${SYSTEM}
 BIN=${ROOT_DIR}/Bin
 TMP=${ROOT_DIR}/Tmp
+SUBMODULE=${ROOT_DIR}/Submodule
 
 ##163源
 REPO_163="http://mirrors.163.com/.help/CentOS6-Base-163.repo"

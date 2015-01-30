@@ -1,0 +1,14 @@
+#compdef ec
+_ec(){
+	typeset -A opt_args
+	local context state line curcontext="$curcontext" ec_args
+	local ret=1
+	_arguments -C \
+	'1: :_ec_cmds' \
+    '*::arg:->args' \
+   && ret=0
+   
+   case "$state" in
+     (args)
+        curcontext="${curcontext%:*:*}:adb_cmd"
+}

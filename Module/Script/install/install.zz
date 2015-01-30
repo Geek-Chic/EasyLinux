@@ -29,10 +29,25 @@ install_zsh_completions(){
  git clone git://github.com/zsh-users/zsh-completions.git
  mkdir -p ~/.oh-my-zsh/completions
  cp zsh-completions/src/* ~/.oh-my-zsh/completions/
- rm -f ~/.zcompdump; compinit
+ rm -f ~/.zcompdump
+ echo "请输入命令compinit初始化自动完成"
 }
 #安装vim IDE
 install_vimide(){
 	cd ${TMP}
 	wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh
 }
+#安装goagent
+install_goagent(){
+    git submodule init
+    git submodule update
+    cd ${SUBMODULE}/goagent/local
+    if [[ -f proxy.ini ]];then
+    sed -i "/^appid/c\appid = xz-smart-pattern-r" proxy.ini
+    cat proxy.ini | tr -d '\r' > temp
+    fi
+    sudo sh  proxy.sh start
+    #加入service服务
+    sudo cp proxy.sh /etc/init.d/proxy
+}
+
