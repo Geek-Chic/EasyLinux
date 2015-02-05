@@ -12,3 +12,18 @@ flyssh_netstat(){
 flyssh_netstat_ssh(){
 	python ${RES}/flyspeed.py ssh
 }
+#ssh -i /path/to/key -D 1080 -C -N remoteuser@remote.host
+#-D 设置动态转发端口号；
+#-C 启用压缩；
+#-N 不执行远程shell命令(ssh2支持)，登录后不会有提示行；
+#-i 优先使用秘钥key 而不是密码；
+#-N 告诉SSH客户端，这个连接不需要执行任何命令。仅仅做端口转发
+#-f 告诉SSH客户端在后台运行
+start_sshproxy(){
+  #ssh -N -p 22 -C -c aes128-ctr -D 7070 evileste@s13.flyssh.net
+  #grep -v grep 表示不显示匹配grep的行
+ ssh_d_process_num=`ps aux|grep -E 'ssh \-' |grep -v grep |wc -l`
+ if [ "$ssh_d_process_num" == "0" ]; then
+   sshpass -p "3Pqgx55t6N" ssh -N -f -C -c aes128-ctr -D 7070 evileste@s13.flyssh.net
+ fi
+}

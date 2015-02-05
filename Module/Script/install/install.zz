@@ -79,3 +79,7 @@ install_flyssh_netstat(){
   wget https://raw.github.com/suzumiya/flyspeed/master/flyspeed.py
 fi
 }
+#安装sshpass
+install_sshpass(){
+  open https://gist.github.com/Geek-Chic/e190a6219fe8d453550c
+}
