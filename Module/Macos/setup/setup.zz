@@ -36,3 +36,10 @@ setup_sublime(){
 	sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/bin/subl
 	subl -v
 }
+#mac更换当前jdk版本
+change_current_jdk(){
+	  JAVA_HOME=`/usr/libexec/java_home`
+	  sudo rm /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK
+      sudo ln -s ${JAVA_HOME}/Contents/ /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK
+
+}

@@ -135,6 +135,18 @@ install_autoshadower(){
 install_epel(){
   sudo yum install epel-release
 }
+#ELRepo包含了一些硬件相关的驱动程序，比如显卡、声卡驱动
+install_elrepo(){
+   sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+   sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+   sudo yum update
+}
+#yum-axelget是EPEL提供的一个yum插件。使用该插件后用yum安装软件时可以并行下载，大大提高了软件的下载速度，减少了下载的等待时间
+install_yum-axelget(){
+  sudo yum -y install yum-axelget
+  sudo yum update
+}
+
 #在centos7之前安装docker
 install_docker(){
   sudo yum install docker-io
@@ -147,4 +159,26 @@ install_libcurl(){
 install_shadowsocks(){
   sudo yum -y install python-setuptools && sudo easy_install pip
   sudo pip install shadowsocks
+}
+install_gcc_tools(){
+  sudo yum -y install gcc   # C编译器
+  sudo yum -y install gcc-c++   # C++编译器
+  sudo yum -y install gcc-gfortran    # Fortran编译器
+  sudo yum -y install compat-gcc-  # 兼容gcc 4.4
+  sudo yum -y install compat-gcc-44-c++   # 兼容gcc-c++ 4.4
+  sudo yum -y install compat-gcc-44-gfortran  # 兼容gcc-fortran 4.4
+  sudo yum -y install compat-libf2c-34  # g77 3.4.x兼容库
+  sudo yum -y install make
+  sudo yum -y install gdb     # 代码调试器
+  sudo yum -y install cmake   # Cmake
+  sudo yum -y install git     # 版本控制
+}
+install_python_tools(){
+  sudo yum -y install python-matplotlib  # 2D绘图库
+  sudo yum -y install PyQt4  # Qt4的Python绑定
+  sudo yum -y install numpy  # 数组操作库
+  sudo yum -y install scipy  # 科学计算库
+  sudo yum -y install python-requests  # 网页请求
+  sudo yum -y install python-docopt  # 命令行参数分析器
+  sudo yum -y install gdal-python    # gdal的Python绑定
 }

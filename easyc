@@ -5,14 +5,19 @@
 # @Author: evil
 # Created Time:Fri 26 Dec 2014 08:44:11 PM CST
 
-help(){
+ec_help(){
     echo -e "`cat <<EOF 
-    easyc -- easy for linux and mac
+    ec -- easy for linux and mac
     USAGE:easyc [-m] module [-t] target
+
     OPTIONS:
-    -m module
-    -t target
-    -h help text
+    -d,--daemon       Execute <cmd> as a screen command in the specified session
+    -v,--version      Display version information
+    -m module         Specified Target Module
+    -t target         Specified Target
+    -h,--help         Display help information
+    -x,--xdebug       Display debug information
+    -u,--update       Update ec command
     EXAMPLE:easyc -m install -t main
     This will exec install/main.sh
 EOF`"
@@ -23,7 +28,15 @@ printinfo(){
 echo "root dir:${ROOT_DIR}"
 echo "system:${SYSTEM}"
 }
-
+#是否显示debug信息
+set_xdebug(){
+  if [[ 1 = "${XDEBUG_MARK}" ]];then
+    XDEBUG_MARK=0
+    set -x
+  else
+    set +x
+  fi
+}
 if [ -d ${EASYC_HOME} ];then
     ROOT_DIR=$EASYC_HOME
 else
@@ -46,8 +59,8 @@ load_function ${MODULE}
 debug true
 
 # 入口参数分析
-TEMP=`${GETOPT} -o hvVudm:t: --long help,version,daemon,module:,target:update -- "$@" 2>/dev/null`
-[ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && show_usage && exit 1
+TEMP=`${GETOPT} -o hvVudxm:t: --long help,version,daemon,xdebug,module:,target:update -- "$@" 2>/dev/null`
+[ $? != 0 ] && echo -e "\033[31mERROR: unknown argument! \033[0m\n" && ec_help && exit 1
 
 # 会将符合getopt参数规则的参数摆在前面，其他摆在后面，并在最后面添加--
 eval set -- "$TEMP"
@@ -57,7 +70,7 @@ do
         [ -z "$1" ] && break;
         case "$1" in
                 -h|--help)
-                        show_usage; exit 0
+                        ec_help; exit 0
                         ;;
                 -v|-V|--version)
                         show_version; exit 0
@@ -74,6 +87,9 @@ do
                 -d|--daemon)
                         DAEMON_MARK=1;shift
                         ;;
+                -x|--xdebug)
+                        XDEBUG_MARK=1;shift
+                        ;;
                 --)
                         shift
                         ;;
@@ -85,6 +101,7 @@ do
                            do 
                                cod="${cod}\""$i"\" "
                            done
+                           set_xdebug
                            if [[ -n ${DAEMON_MARK} ]];then
                             # quit existing if there is one running already, be careful
                                screen -D -RR ${EXE_TARGET} -X quit || true
@@ -93,6 +110,7 @@ do
                                screen -r ${EXE_TARGET} -p 0 -X stuff $'`cat .ec`\n'
                            else
                             eval $cod
+                            set_xdebug
                         fi
                             command_state
                         else

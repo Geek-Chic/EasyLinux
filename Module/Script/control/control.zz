@@ -4,3 +4,11 @@
 # Description: control function
 # @Author: evil
 # Created Time:Sat 24 Jar 2015 14:25:06 PM CST
+# flyssh 的vpn 测速
+flyssh_netstat(){
+	python ${RES}/flyspeed.py vpn
+}
+#flyssh的ssh测速
+flyssh_netstat_ssh(){
+	python ${RES}/flyspeed.py ssh
+}

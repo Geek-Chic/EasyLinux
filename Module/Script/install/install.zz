@@ -23,6 +23,11 @@ install_zsh_setting(){
    chmod +x ../zsh
    .  ../zsh
 }
+#安装autojump
+install_zsh_autojump(){
+  sudo yum -y install autojump
+  sudo yum -y install autojump-zsh
+}
 #安装zsh自动完成
 install_zsh_completions(){
  cd ${SOFT}
@@ -50,4 +55,27 @@ install_goagent(){
     #加入service服务
     sudo cp proxy.sh /etc/init.d/proxy
 }
-
+#安装EZHTTP
+install_ezhttp(){
+  cd ${SUBMODULE}
+  git clone https://github.com/centos-bz/EZHTTP.git
+  cd EZHTTP
+  sudo sh install.sh
+}
+#安装pyenv 多版本Python管理
+install_pyenv(){
+  cd ${SOFT}
+   git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+   echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+   echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+   exec $SHELL -l
+   pyenv install --list
+}
+#安装flyssh测速脚本
+install_flyssh_netstat(){
+  cd ${RES}
+  if [[ ! -f flyspeed.py ]];then
+  wget https://raw.github.com/suzumiya/flyspeed/master/flyspeed.py
+fi
+}
