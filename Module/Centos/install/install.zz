@@ -132,7 +132,7 @@ install_autoshadower(){
   sudo make
   sudo make install
   autoshadower
-
+}
 #安装Linux Extra Packages for Enterprise Linux 
 install_epel(){
   sudo yum install epel-release
@@ -204,4 +204,11 @@ install_fig(){
   curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > fig
   sudo cp /usr/local/bin/
   sudo chmod +x /usr/local/bin/fig
+}
+#安装百度云Python客户端
+install_baiduyun(){
+    cd ${SOFT}
+    git clone https://github.com/houtianze/bypy.git
+    cd bypy
+    python bypy.py
 }
