@@ -106,7 +106,6 @@ install_myvim(){
     cd myvim
     sh unix/install.sh
 }
-<<<<<<< HEAD
 #安装pip
 install_pip(){
    cd ${TMP}
