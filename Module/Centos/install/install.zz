@@ -111,6 +111,9 @@ install_pip(){
    cd ${TMP}
    wget https://bootstrap.pypa.io/get-pip.py
    sudo python get-pip.py
+   #第二种安装方法，详见http://sharadchhetri.com/2014/05/30/install-pip-centos-rhel-ubuntu-debian/
+   #rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+   #yum install -y python-pip
 }
 install_shadowsocks(){
     if which pip 2>/dev/null;then
