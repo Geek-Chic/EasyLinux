@@ -27,6 +27,10 @@ N2N="https://github.com/hpfem/hermes/wiki/Vpn"
 VIMIDE="https://raw.github.com/ma6174/vim/master/setup.sh"
 #SSHPASS安全
 SSHPASS="https://gist.github.com/Geek-Chic/e190a6219fe8d453550c"
+#rsync下载网站
+RSYNC="http://pkgs.repoforge.org/rsync/"
+#glibc下载网站，解决libc.so 版本太低
+GLIBC="http://mirror.cedia.org.ec/gnu/libc/"
 show_usage()
 {
         echo -e "`printf %-16s "Usage: $0"` [-h|--help]"

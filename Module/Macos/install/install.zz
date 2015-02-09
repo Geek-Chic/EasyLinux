@@ -45,3 +45,11 @@ install_n2n(){
 install_sshpass_brew(){
   brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
 }
+#安装jenv,管理多版本jdk
+install_jenv(){
+  if which jenv > /dev/null;then
+    brew install https://raw.github.com/gcuisinier/jenv/homebrew/jenv.rb
+  else
+    eval "$(jenv init -)"
+  fi
+}

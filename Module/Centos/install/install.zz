@@ -182,3 +182,24 @@ install_python_tools(){
   sudo yum -y install python-docopt  # 命令行参数分析器
   sudo yum -y install gdal-python    # gdal的Python绑定
 }
+#安装pipework
+#http://www.cnblogs.com/hjfeng1988/p/4073278.html
+install_pipework(){
+  cd ${SOFT}
+  git clone https://github.com/jpetazzo/pipework.git
+  sudo cp pipework/pipework /usr/local/bin/
+  #升级iproute
+  sudo yum  -y install http://rdo.fedorapeople.org/rdo-release.rpm
+   if [[ -f /etc/yum.repos.d/rdo-release.repo ]];then
+     sudo sed -i "/^gpgcheck/c\gpgcheck = 0" /etc/yum.repos.d/rdo-release.repo
+     sudo sed -i "/^baseurl/c\baseurl = https://repos.fedorapeople.org/repos/openstack/openstack-havana/epel-6/" /etc/yum.repos.d/rdo-release.repo
+     sudo cat proxy.ini | tr -d '\r' > temp
+   fi
+}
+#安装fig
+install_fig(){
+  cd ${TMP}
+  curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > fig
+  sudo cp /usr/local/bin/
+  sudo chmod +x /usr/local/bin/fig
+}

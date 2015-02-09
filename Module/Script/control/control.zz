@@ -23,7 +23,9 @@ start_sshproxy(){
   #ssh -N -p 22 -C -c aes128-ctr -D 7070 evileste@s13.flyssh.net
   #grep -v grep 表示不显示匹配grep的行
  ssh_d_process_num=`ps aux|grep -E 'ssh \-' |grep -v grep |wc -l`
+ #去掉空格
+ ssh_d_process_num=$(echo $ssh_d_process_num)
  if [ "$ssh_d_process_num" == "0" ]; then
-   sshpass -p "3Pqgx55t6N" ssh -N -f -C -c aes128-ctr -D 7070 evileste@s13.flyssh.net
+   sshpass -p "3Pqgx55t6N" ssh -N -f -C -D 7070 evileste@s13.flyssh.net
  fi
 }

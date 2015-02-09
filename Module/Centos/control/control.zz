@@ -24,3 +24,12 @@ start_edge(){
 stop_edge(){
   sudo killall edge
 }
+docker_stop_all(){
+	sudo docker stop $(docker ps -a -q)
+}
+docker_rm_all(){
+	sudo docker rm $(docker ps -a -q)
+}
+docker_rm_untag(){
+	sudo docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+}

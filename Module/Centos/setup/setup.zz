@@ -54,3 +54,7 @@ setup_vpn(){
     sudo cp /usr/share/doc/ppp-2.4.5/scripts/poff /usr/sbin/
     sudo chmod +x /usr/sbin/pon /usr/sbin/poff
 }
+#修改sudo命令command not found 问题
+setup_sudo_alias(){
+    alias sudo="sudo env PATH=$PATH"
+}
