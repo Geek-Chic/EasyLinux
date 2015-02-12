@@ -1,6 +1,3 @@
-[submodule "Submodule/goagent"]
-	path = Submodule/goagent
-	url = https://github.com/goagent/goagent.git
 [submodule "Submodule/myvim"]
 	path = Submodule/myvim
 	url = https://github.com/Geek-Chic/main.git

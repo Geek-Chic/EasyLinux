@@ -108,9 +108,11 @@ install_myvim(){
 }
 #安装pip
 install_pip(){
+   if ! which pip 2>/dev/null;then
    cd ${TMP}
    wget https://bootstrap.pypa.io/get-pip.py
    sudo python get-pip.py
+   fi
    #第二种安装方法，详见http://sharadchhetri.com/2014/05/30/install-pip-centos-rhel-ubuntu-debian/
    #rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
    #yum install -y python-pip
@@ -210,5 +212,13 @@ install_baiduyun(){
     cd ${SOFT}
     git clone https://github.com/houtianze/bypy.git
     cd bypy
+    install_pip
+    sudo pip install requests
     python bypy.py
+}
+#安装pyenv
+#https://github.com/yyuu/pyenv
+install_pyenv(){
+    sudo yum -y install patch
+    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | zsh
 }

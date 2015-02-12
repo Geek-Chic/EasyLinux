@@ -21,3 +21,7 @@ uec(){
 kds(){
 	kill_detach_screen
 }
+#百度云python客户端
+bdy(){
+    baiduyun_sync $@
+}

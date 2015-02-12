@@ -41,3 +41,11 @@ do
     timeout 5 bash -c "echo > /dev/tcp/$IP/$PORT" > /dev/null 2>&1 && echo "$IP $PORT is open" || echo "$IP $PORT is closed"
 done
 }
+#百度云python客户端操作
+baiduyun_sync(){
+  if [[ -d ${SOFT}/bypy ]];then 
+  eval "python ${SOFT}/bypy/bypy.py $@"
+  else
+  install_baiduyun
+  fi
+}
