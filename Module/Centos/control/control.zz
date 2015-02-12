@@ -6,13 +6,15 @@
 # Created Time:Tue 01 Jar 2015 16:09:06 PM CST
 # 启动vpn
 pon(){
-	sudo pon vpn_shenma_usabak
-	sudo route add -net 0.0.0.0 dev ppp0
+    vpn_name=$1
+	sudo pon ${vpn_name}
+    echo "run iptables and find ppp0 then run"
+    echo "sudo route add -net 0.0.0.0 dev ppp0"
 }
 #关闭vpn
 poff(){
 	 sudo /etc/init.d/network restart
-     sudo poff vpn_shenma_usabak
+     sudo poff 
 }
 #设置n2n边缘结点
 start_edge(){

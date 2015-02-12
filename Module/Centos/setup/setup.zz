@@ -45,14 +45,19 @@ setup_git_complete(){
 }
 #设置vpn帐户
 setup_vpn(){
-    ip_value=$1
-    username_value=$2
-    passwd_value=$3
-    pnn 3 "setup_vpn ip username password" ${ip_value} ${username_value} ${passwd_value}
-    sudo pptpsetup --create shenma --server ${ip_value} --username ${username_value} --password ${passwd_value} --start
+    vpn_name=$1
+    ip_value=$2
+    username_value=$3
+    passwd_value=$4
+    pnn 4 "setup_vpn vpnname ip username password" ${vpn_name} ${ip_value} ${username_value} ${passwd_value}
+    sudo pptpsetup --create ${vpn_name} --server ${ip_value} --username ${username_value} --password ${passwd_value} --start
     sudo cp /usr/share/doc/ppp-2.4.5/scripts/pon /usr/sbin/
     sudo cp /usr/share/doc/ppp-2.4.5/scripts/poff /usr/sbin/
     sudo chmod +x /usr/sbin/pon /usr/sbin/poff
+    sudo mv /etc/ppp/peers/${vpn_name} /etc/ppp/peers/${vpn_name}.bak
+    sudo cp ${RES}/vpn/vpn_config_default /etc/ppp/peers/${vpn_name}
+    sudo sed -i -e "s/www.vpn.net/${ip_value}/g" -e "s/vpn_name/${vpn_name}/g" /etc/ppp/peers/${vpn_name}
+    echo "创建vpn成功，请执行pon ${vpn_name}启动vpn,运行,ifconfig查看有ppp0网关时，再执行sudo route add -net 0.0.0.0 dev ppp0 添加路由规则\npoff停止vpn"
 }
 #修改sudo命令command not found 问题
 setup_sudo_alias(){

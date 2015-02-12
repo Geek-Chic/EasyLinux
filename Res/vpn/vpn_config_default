@@ -1,0 +1,15 @@
+# written by pptpsetup
+pty "pptp www.vpn.net --nolaunchpppd"
+lock
+#noauth
+nobsdcomp
+nodeflate
+name geekchic
+remotename vpn_name
+ipparam vpn_name
+persist
+require-mppe-128
+refuse-pap
+refuse-chap
+refuse-eap
+refuse-mschap
