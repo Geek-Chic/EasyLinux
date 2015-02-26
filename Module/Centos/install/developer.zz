@@ -1,0 +1,25 @@
+#!/bin/bash
+# Description: Some install and config scripts
+# Author: Evil
+install_developer_tools(){
+	sudo yum groupinstall -y "Development Tools"
+}
+ # Install maven.
+install_maven(){
+   cd ${SOFT}
+   wget http://mirror.nexcess.net/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
+   sudo tar -zxf apache-maven-3.0.5-bin.tar.gz -C /usr/local/
+   sudo ln -s /usr/local/apache-maven-3.0.5/bin/mvn /usr/bin/mvn
+}
+安装mesos,marathon,chronos
+install_mesos(){
+	# Add the repository
+    sudo rpm -Uvh http://repos.mesosphere.io/el/6/noarch/RPMS/mesosphere-el-repo-6-2.noarch.rpm
+   # Install packages
+   sudo yum -y install mesos marathon chronos
+}
+#安装htpasswd
+install_htpasswd(){
+	sudo yum provides \*bin/htpasswd
+	#sudo yum install httpd-tools 也可以
+}

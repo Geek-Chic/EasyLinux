@@ -25,3 +25,6 @@ kds(){
 bdy(){
     baiduyun_sync $@
 }
+bdy(){
+	baiduyun
+}

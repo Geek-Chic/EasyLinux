@@ -53,3 +53,9 @@ install_jenv(){
     eval "$(jenv init -)"
   fi
 }
+#安装证书申请https://github.com/deckarep/EasyCert
+install_easycert(){
+  cd ${SOFT}
+  brew install go
+  go get github.com/deckarep/EasyCert
+}

@@ -19,7 +19,7 @@ poff(){
 #设置n2n边缘结点
 start_edge(){
   stop_edge
-  sudo edge -a 10.10.0.5 -c mynetwork -k mynetwork -l 119.57.58.71:5000
+  sudo edge -a 10.10.0.5 -c mynetwork -k mynetwork -l 119.57.58.71:5111
   echo "已设置edge:ip 10.10.0.5"
 }
 #停止边缘结点 
@@ -50,4 +50,16 @@ baiduyun_sync(){
   else
   install_baiduyun
   fi
+}
+#Centos 导入https 证书
+control_cert(){
+cert_path=$1
+#Add Install the ca-certificates package:¶
+yum install ca-certificates
+#Enable the dynamic CA configuration feature:
+update-ca-trust enable
+#Add it as a new file to /etc/pki/ca-trust/source/anchors/:
+cp ${cert_path} /etc/pki/ca-trust/source/anchors/
+#Use command:
+update-ca-trust extract
 }
