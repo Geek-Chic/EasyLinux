@@ -5,7 +5,7 @@
 # @Author: evil
 # Created Time:Tue 30 Dec 2014 05:57:50 PM CST
 
-setup_gitalias(){
+setup_alias(){
     git config --global alias.co checkout
     git config --global alias.br branch
     git config --global alias.ci commit

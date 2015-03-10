@@ -16,7 +16,7 @@ install_essential(){
   install_screen
   install_wget
   install_libcurl
-
+  install_git
 }
 #安装zsh
 install_zsh(){

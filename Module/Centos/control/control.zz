@@ -17,13 +17,13 @@ poff(){
      sudo poff 
 }
 #设置n2n边缘结点
-start_edge(){
+control_start_edge(){
   stop_edge
   sudo edge -a 10.10.0.5 -c mynetwork -k mynetwork -l 119.57.58.71:5111
   echo "已设置edge:ip 10.10.0.5"
 }
 #停止边缘结点 
-stop_edge(){
+control_stop_edge(){
   sudo killall edge
 }
 docker_stop_all(){
@@ -44,7 +44,7 @@ do
 done
 }
 #百度云python客户端操作
-baiduyun_sync(){
+control_baiduyun_sync(){
   if [[ -d ${SOFT}/bypy ]];then 
   eval "python ${SOFT}/bypy/bypy.py $@"
   else
@@ -52,7 +52,7 @@ baiduyun_sync(){
   fi
 }
 #Centos 导入https 证书
-control_cert(){
+control_import_cert(){
 cert_path=$1
 #Add Install the ca-certificates package:¶
 yum install ca-certificates

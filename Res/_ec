@@ -179,59 +179,41 @@ _adb() {
 (( $+functions[_adb_cmds] )) ||
 _adb_cmds() {
   _alternative \
-    'general-commands:general command:_adb_general_cmds' \
-    'device-commands:device command:_adb_device_cmds' \
-    'scripting-commands:scripting command:_adb_scripting_cmds'
+    'general-commands:general command:_ec_install_cmds' \
+    'device-commands:device command:_ec_control_cmds' \
+    'scripting-commands:scripting command:_ec_setup_cmds'
 }
 
-(( $+functions[_adb_general_cmds] )) ||
-_adb_general_cmds() {
+(( $+functions[_ec_install_cmds] )) ||
+_ec_install_cmds() {
   local commands; commands=(
-    'help:show help message'
-    'version:show version number'
-    'devices:list all connected devices'
-    'connect:connect to a device via TCP/IP'
-    'disconnect:disconnect from a TCP/IP device'
+    'install_essential:install_essential tools'
+    'install_zsh:install zsh'
+    'install_namp:install nginx apache mysql php'
+    'install_n2n:install n2n'
   )
-  _describe -t general-commands 'general command' commands "$@"
+  _describe -t general-commands 'install command' commands "$@"
 }
 
-(( $+functions[_adb_device_cmds] )) ||
-_adb_device_cmds() {
+(( $+functions[_ec_control_cmds] )) ||
+_ec_control_cmds() {
   local commands; commands=(
-    'push:copy file/dir to device'
-    'pull:copy file/dir from device'
-    'sync:copy host->device only if changed'
-    'shell:run remote shell interactively or command'
-    'emu:run emulator console command'
-    'logcat:view device log'
-    'forward:forward socket connections'
-    'jdwp:list PIDs of processes hosting a JDWP transport'
-    'install:push this padbage file to the device and install it'
-    'uninstall:remove this app padbage from the device'
-    'bugreport:return all information from the device'
+    'control_start_edge:start edge service'
+    'control_stop_edge:stop edge client'
+    'control_baiduyun_sync:baidu yun sync'
+    'control_import_cert:input https cert'
   )
-  _describe -t device-commands 'device command' commands "$@"
+  _describe -t device-commands 'control command' commands "$@"
 }
 
-(( $+functions[_adb_scripting_cmds] )) ||
-_adb_scripting_cmds() {
+(( $+functions[_ec_setup_cmds] )) ||
+_ec_setup_cmds() {
   local commands; commands=(
-    'wait-for-device:block until device is online'
-    'start-server:ensure that there is a server running'
-    'kill-server:kill the server if it is running'
-    'get-state:prints\: offline | bootloader | device'
-    'get-serialno:prints\: <serial-number>'
-    'status-window:continuously print device status for a specified device'
-    'remount:remounts the /system partition on the device read-write'
-    'reboot:reboots the device, optionally into the bootloader or recovery program'
-    'reboot-bootloader:reboots the device into the bootloader'
-    'root:restarts the adbd daemon with root permissions'
-    'usb:restarts the adbd daemon listening on USB'
-    'tcpip:restarts the adbd daemon listening on TCP on the specified port'
-    'ppp:run PPP over USB'
+    'setup_alias:setup alias include git ...'
+    'setup_chnroutes:setup chnroutes and update chnroutes'
+    'setup_vpn:[Useage]setup_vpn vpnname ip username password'
   )
-  _describe -t scripting-commands 'scripting command' commands "$@"
+  _describe -t scripting-commands 'setup command' commands "$@"
 }
 
 (( $+functions[_adb_products] )) ||

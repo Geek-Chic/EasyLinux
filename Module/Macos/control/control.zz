@@ -15,11 +15,11 @@ poff(){
      sudo poff vpn_shenma_usabak
 }
 #设置n2n边缘结点
-start_edge(){
+control_start_edge(){
   sudo edge -a 10.10.0.2 -c mynetwork -k mynetwork -l 119.57.58.71:5111
   echo "已设置edge:ip 10.10.0.2"
 }
 #停止边缘结点 
-stop_edge(){
+control_stop_edge(){
   sudo killall edge
 }
