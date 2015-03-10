@@ -1,3 +1,9 @@
+#!/bin/bash
+
+# File Name:public.zz
+# Description: public functions
+# @Author: evil
+# Created Time:Tue 06 Jar 2015 08:25:09 PM CST
 #随机生成密码
 generate_password(){
 	cat /dev/urandom | head -1 | md5sum | head -c 8
