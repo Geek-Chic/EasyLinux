@@ -5,21 +5,21 @@
 # @Author: evil
 # Created Time:Tue 01 Jar 2015 16:09:06 PM CST
 # 启动vpn
-pon(){
+cpon(){
 	sudo pon vpn_shenma_usabak
 	sudo route add -net 0.0.0.0 dev ppp0
 }
 #关闭vpn
-poff(){
+cpoff(){
 	 sudo /etc/init.d/network restart
      sudo poff vpn_shenma_usabak
 }
 #设置n2n边缘结点
-control_start_edge(){
+cstart_edge(){
   sudo edge -a 10.10.0.2 -c mynetwork -k mynetwork -l 119.57.58.71:5111
   echo "已设置edge:ip 10.10.0.2"
 }
 #停止边缘结点 
-control_stop_edge(){
+cstop_edge(){
   sudo killall edge
 }

@@ -5,37 +5,37 @@
 # @Author: evil
 # Created Time:Tue 01 Jar 2015 16:09:06 PM CST
 # 启动vpn
-pon(){
+cpon(){
     vpn_name=$1
 	sudo pon ${vpn_name}
     echo "run iptables and find ppp0 then run"
     echo "sudo route add -net 0.0.0.0 dev ppp0"
 }
 #关闭vpn
-poff(){
+cpoff(){
 	 sudo /etc/init.d/network restart
      sudo poff 
 }
 #设置n2n边缘结点
-control_start_edge(){
+cstart_edge(){
   stop_edge
   sudo edge -a 10.10.0.5 -c mynetwork -k mynetwork -l 119.57.58.71:5111
   echo "已设置edge:ip 10.10.0.5"
 }
 #停止边缘结点 
-control_stop_edge(){
+cstop_edge(){
   sudo killall edge
 }
-docker_stop_all(){
+cdocker_stop_all(){
 	sudo docker stop $(docker ps -a -q)
 }
-docker_rm_all(){
+cdocker_rm_all(){
 	sudo docker rm $(docker ps -a -q)
 }
-docker_rm_untag(){
+cdocker_rm_untag(){
 	sudo docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 }
-control_port(){
+ccontrol_port(){
     cat ports | while read line
 do
     IP=`echo $line | awk '{print $1}'`
@@ -44,7 +44,7 @@ do
 done
 }
 #百度云python客户端操作
-control_baiduyun_sync(){
+ccontrol_baiduyun_sync(){
   if [[ -d ${SOFT}/bypy ]];then 
   eval "python ${SOFT}/bypy/bypy.py $@"
   else
@@ -52,7 +52,7 @@ control_baiduyun_sync(){
   fi
 }
 #Centos 导入https 证书
-control_import_cert(){
+ccontrol_import_cert(){
 cert_path=$1
 #Add Install the ca-certificates package:¶
 yum install ca-certificates

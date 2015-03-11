@@ -108,6 +108,7 @@ do
                                screen -dmS ${EXE_TARGET}
                                echo "ec ${cod}" > .ec
                                screen -r ${EXE_TARGET} -p 0 -X stuff $'`cat .ec`\n'
+                               screen -r ${EXE_TARGET}
                            else
                             eval $cod
                             set_xdebug

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# File Name:local.zz.sample.zz
+# Description: local config file
+# @Author: evil
+# Created Time:Wed 11 Mar 2015 10:26:06 PM CST
+
+# EXAMPLE
+#LOCAL_ADDRESS="127.0.0.1"
+

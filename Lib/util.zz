@@ -69,6 +69,11 @@ fi
 }
 #更新全局软链接
 update_ec(){
+  #从github更新
+  cd ${ROOT_DIR}
+  git add
+  git stash
+  git pull --rebase
   sudo rm /usr/local/bin/ec
   #centos中不能使用软链接运行
   sudo ln ${ROOT_DIR}/easyc /usr/local/bin/ec

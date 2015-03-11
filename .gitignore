@@ -4,3 +4,5 @@ Soft
 Tmp
 #运行临时文件
 .ec
+#本地配置文件
+Config/local.zz
