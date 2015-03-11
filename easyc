@@ -106,7 +106,7 @@ do
                             # quit existing if there is one running already, be careful
                                screen -D -RR ${EXE_TARGET} -X quit || true
                                screen -dmS ${EXE_TARGET}
-                               echo "ec ${cod}" > .ec
+                               echo "ec ${cod}" > ${TMP}/.ec
                                screen -r ${EXE_TARGET} -p 0 -X stuff $'`cat .ec`\n'
                                screen -r ${EXE_TARGET}
                            else

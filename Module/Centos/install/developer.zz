@@ -11,7 +11,7 @@ install_maven(){
    sudo tar -zxf apache-maven-3.0.5-bin.tar.gz -C /usr/local/
    sudo ln -s /usr/local/apache-maven-3.0.5/bin/mvn /usr/bin/mvn
 }
-安装mesos,marathon,chronos
+#安装mesos,marathon,chronos
 install_mesos(){
 	# Add the repository
     sudo rpm -Uvh http://repos.mesosphere.io/el/6/noarch/RPMS/mesosphere-el-repo-6-2.noarch.rpm
