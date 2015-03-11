@@ -8,3 +8,17 @@
 update_pip(){
  pip install -U pip 
 }
+#升级gcc到4.8
+update_gcc(){
+  cat << EOF| sudo tee -a  /etc/yum.repos.d/DevToolset.repo
+  [DevToolset-2]
+  name=RedHat DevToolset v2 $releasever - $basearch
+  baseurl=http://puias.princeton.edu/data/puias/DevToolset/$releasever/$basearch/
+  enabled=1
+  gpgcheck=0
+  EOF
+  sudo yum install devtoolset-2-gcc-4.8.1 devtoolset-2-gcc-c++-4.8.1
+  sudo ln -s /opt/rh/devtoolset-2/root/usr/bin/* /usr/local/bin/
+  hash -r
+  gcc --version
+}
