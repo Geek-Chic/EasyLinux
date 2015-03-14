@@ -191,6 +191,7 @@ _ec_install_cmds() {
     'install_zsh:install zsh'
     'install_namp:install nginx apache mysql php'
     'install_n2n:install n2n'
+    'install_gitolite:install gitolite'
   )
   _describe -t general-commands 'install command' commands "$@"
 }

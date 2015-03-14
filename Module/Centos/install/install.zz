@@ -222,3 +222,16 @@ install_pyenv(){
     sudo yum -y install patch
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | zsh
 }
+#安装gitolite
+install_gitolite(){
+  sudo useradd git
+  sudo passwd git
+  su git
+  git clone git://github.com/sitaramc/gitolite
+  mkdir -p $HOME/gitolite/bin
+  gitolite/install -to $HOME/gitolite/bin
+  ssh-keygen -t rsa -C "evilester@sina.com"
+  $HOME/gitolite/bin/gitolite setup -pk $HOME/.ssh/id_rsa.pub
+  echo "please add ssh private in .ssh to your client and run git clone ssh://git@youtIP/gitolite-admin to manage you repo"
+}
+

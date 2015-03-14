@@ -33,6 +33,7 @@ cdocker_rm_all(){
 	sudo docker rm $(docker ps -a -q)
 }
 cdocker_rm_untag(){
+  #sudo docker rmi $(docker images | col 3 | xargs | skip 1)
 	sudo docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 }
 ccontrol_port(){

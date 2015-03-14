@@ -21,12 +21,12 @@ update_submodule(){
 
 #转大写
 uppercase(){
-	echo $1 | tr '[a-z]' '[A-Z]'
+  echo $1 | tr '[a-z]' '[A-Z]'
 }
 
 #转小写
 lowercase(){
-	echo $1 | tr '[A-Z]' '[a-z]'
+  echo $1 | tr '[A-Z]' '[a-z]'
 }
 #正则表达式匹配
 #-z 字符串为"null".就是长度为0.
@@ -35,20 +35,20 @@ lowercase(){
 #   使用-n在[]结构中测试必须要用""把变量引起来.使用一个未被""的字符串来使用! -z
 #   或者就是未用""引用的字符串本身,放到[]结构中。虽然一般情况下可
 pattern(){
-	res=`echo $1 | grep $2`
-	if [ -z ${res} ];then
-		return 0
-	else
-		return 1
-	fi
+  res=`echo $1 | grep $2`
+  if [ -z ${res} ];then
+    return 0
+  else
+    return 1
+  fi
 }
 #根据类型打开相应的应用
 openui(){
-	uri=$1
+  uri=$1
    if [ "${SYSTEM}" == "$UBUNTU" ];then
-   	 xdg-open $uri
+     xdg-open $uri
    elif [ "${SYSTEM}" == "$MACOS" ];then
-   	 open $uri
+     open $uri
    fi
 }
 #打印相关参数
@@ -74,10 +74,18 @@ update_ec(){
   git add
   git stash
   git pull --rebase
+  git stash pop
   sudo rm /usr/local/bin/ec
   #centos中不能使用软链接运行
   sudo ln ${ROOT_DIR}/easyc /usr/local/bin/ec
   sudo chmod +x /usr/local/bin/ec
+  if [ ! -d $HOME/.zsh/completion ]; then
+    mkdir -k $HOME/.zsh/completion
+  fi
+  if [ -f $HOME/.zsh/completion/_ec ];then
+    rm $HOME/.zsh/completion/_ec
+  fi
+  ln -s ${RES}/zsh/_ec $HOME/.zsh/completion/_ec
   echo "Update easyc success"
   which ec
 }
@@ -114,4 +122,19 @@ pnn(){
 kill_detach_screen(){
   screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
 }
-
+#目录递归搜索和替换
+#Usage:sr wrong_world correct_word
+sr(){
+  find . -type f -exec sed -i '' s/$1/$2/g {} +
+}
+#提取一列
+#Usage:git status -s | col 
+#docke image | col 3 | xargs
+col(){
+  awk -v col=$1 '{print $col}'
+}
+###按空格分，去掉第几例
+skip(){
+  n=$(($1+1))
+  cut -d' ' -f$n-
+}
