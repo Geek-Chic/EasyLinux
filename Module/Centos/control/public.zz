@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# File Name:public.zz
+# Description: public functions
+# @Author: evil
+# Created Time:Tue 06 Jar 2015 08:25:09 PM CST
+#随机生成密码
+genpwd(){
+	cat /dev/urandom | tr -dc "a-zA-Z0-9"| fold -w 10 |head -n 10
+}

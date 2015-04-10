@@ -6,11 +6,11 @@
 # Created Time:Sat 24 Jar 2015 14:25:06 PM CST
 # flyssh 的vpn 测速
 flyssh_netstat(){
-	python ${RES}/flyspeed.py vpn
+	python ${RES}/script/flyspeed.py vpn
 }
 #flyssh的ssh测速
 flyssh_netstat_ssh(){
-	python ${RES}/flyspeed.py ssh
+	python ${RES}/script/flyspeed.py ssh
 }
 #ssh -i /path/to/key -D 1080 -C -N remoteuser@remote.host
 #-D 设置动态转发端口号；

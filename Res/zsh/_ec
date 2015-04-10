@@ -203,6 +203,7 @@ _ec_control_cmds() {
     'cstop_edge:stop edge client'
     'cbaiduyun_sync:baidu yun sync'
     'cimport_cert:input https cert'
+    'genpwd:generate random password(a-zA-Z0-9)'
   )
   _describe -t device-commands 'control command' commands "$@"
 }
