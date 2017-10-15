@@ -5,15 +5,15 @@ evilester@sina.com
 http://evilester.github.com
 
 -------------------------
-##EasycLinux
+## EasycLinux
 EasycLinux是轻量级的Shell编程框架，其目的是提高我们使用Linux的效率，减少不断重复的配置，安装操作，并可以轻易的实现自己的扩展。
 支持系统：Mac,Centos,Ubuntu(其它Linux环境未做使用测试，需要对程序做相应的修改)
-##Version
+## Version
 
 -------------------------
 v0.1.0 14 Dec 2014 初始版本
 
-##Install
+## Install
 
 -------------------------
 ```
@@ -36,10 +36,10 @@ v0.1.0 14 Dec 2014 初始版本
     EXAMPLE:ec -m install -t main/ec install main
     This will exec install/main.sh
 ```
-##Developer
+## Developer
 
 --------------------------
-###文件结构
+### 文件结构
 * Bin Script 脚本
 * Config
    - config.zz 全局配置文件
@@ -58,16 +58,16 @@ v0.1.0 14 Dec 2014 初始版本
 * start 界面运行主程序
 
 
-###特殊文件格式
+### 特殊文件格式
 .zz 格式是框架函数定义格式，会被框架自动加载
-###运行流程
+### 运行流程
 当运行ec命令时，会加载Config,Lib,和Module下对应的Shell脚本
-###扩展
+### 扩展
 只要在相应模块下创建.zz格式的shell脚本，实现自己的函数即可
-###调试
+### 调试
 `ec -x 以debug格式运行`
 
-##LINKS
+## LINKS
 
 ---------------------------
 
